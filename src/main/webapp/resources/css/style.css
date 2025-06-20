@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    background-color: #fff;
+    color: #111;
+}
+.header, .footer {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #b00020;
+}
+nav a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: #111;
+}
+.container {
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+.card {
+    border: 1px solid #ddd;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    background-color: #fafafa;
+}
+form input, form button {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    font-size: 1rem;
+}
+form button {
+    background-color: #b00020;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+form button:hover {
+    background-color: #a0001d;
+}
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    text-align: center;
+    background-color: #fff;
+}
+.product-card img {
+    width: 100%;
+    height: auto;
+}
+.product-name {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+}
+.product-price {
+    font-weight: bold;
+    color: #b00020;
+    margin-top: 0.25rem;
+}
