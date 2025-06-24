@@ -3,7 +3,7 @@ package com.barcode.uniplo.domain;
 import java.sql.Date;
 
 public class UserDto {
-    private int user_id;
+    private Integer user_id;
     private String user_email;
     private String user_password;
     private String user_last_name;

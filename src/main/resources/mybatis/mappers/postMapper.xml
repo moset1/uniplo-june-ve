@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.barcode.uniplo.dao.PostMapper">
+    <select id="count" resultType="int">
+        SELECT count(*) FROM post
+    </select>
+
+    <delete id="delete" parameterType="map">
+        DELETE FROM post
+        WHERE post_id = #{post_id} AND user_id = #{user_id}
+    </delete>
+
+    <insert id="insert" parameterType="PostDto">
+        INSERT INTO post
+            (user_id, created_at, updated_at, post_title, post_content,
+             view_count, like_count, report_count, comment_count, priority,
+             post_type, is_private, category_main, category_sub)
+        VALUES
+            (#{user_id}, #{created_at}, #{updated_at}, #{post_title}, #{post_content},
+             #{view_count}, #{like_count}, #{repost_count}, #{comment_count}, #{priority},
+             #{post_type}, #{is_private}, #{category_main}, #{category_sub})
+    </insert>
+
+    <sql id="selectFromPost">
+        SELECT post_id, post_title, post_content, user_id, view_count, comment_count, created_at
+        FROM post
+    </sql>
+
+    <select id="select" parameterType="int" resultType="PostDto">
+        <include refid="selectFromPost"/>
+        WHERE post_id = #{post_id}
+    </select>
+
+    <select id="selectPage" parameterType="map" resultType="PostDto">
+        <include refid="selectFromPost"/>
+        ORDER BY created_at DESC, post_id DESC
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <update id="update" parameterType="PostDto">
+        UPDATE post
+        SET post_title = #{post_title}
+        , post_content = #{post_content}
+        , is_private = #{is_private}
+        , category_main = #{category_main}
+        , category_sub = #{category_sub}
+        , updated_at = now();
+        WHERE post_id = #{post_id} AND user_id = #[user_id]
+    </update>
+
+    <update id="updateCommentCount" parameterType="map">
+        UPDATE post
+        SET comment_count = comment_count + #{count}
+        WHERE post_id= #{post_id}
+    </update>
+
+    <update id="increaseViewCount" parameterType="int">
+        UPDATE post
+        SET view_count = view_count + 1
+        WHERE post_id = #{post_id}
+    </update>
+
+</mapper>

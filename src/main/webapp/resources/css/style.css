@@ -13,10 +13,15 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-.logo {
+a.logo,
+a.logo:link,
+a.logo:visited,
+a.logo:hover,
+a.logo:active {
     font-size: 1.5rem;
     font-weight: bold;
     color: #b00020;
+    text-decoration: none;
 }
 nav a {
     margin-left: 1rem;
