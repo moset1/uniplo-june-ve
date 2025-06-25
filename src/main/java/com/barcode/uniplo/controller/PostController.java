@@ -1,9 +1,6 @@
 package com.barcode.uniplo.controller;
 
-import com.barcode.uniplo.domain.PageHandler;
-import com.barcode.uniplo.domain.PostDto;
-import com.barcode.uniplo.domain.SearchCondition;
-import com.barcode.uniplo.domain.UserDto;
+import com.barcode.uniplo.domain.*;
 import com.barcode.uniplo.service.PostService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -11,11 +8,14 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.beans.PropertyEditorSupport;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -23,8 +23,21 @@ import java.util.List;
 @Controller
 @RequestMapping("/post")
 public class PostController {
+
+
     @Autowired
     PostService postService;
+
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(PostType.class, new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String text) {
+                setValue(PostType.from(text));  // 소문자 허용
+            }
+        });
+    }
 
     @GetMapping("/list")
     public String list(SearchCondition sc, Model m) {
@@ -33,7 +46,7 @@ public class PostController {
             m.addAttribute("totalCount", totalCount);
             PageHandler pageHandler = new PageHandler(totalCount, sc);
             List<PostDto> list = postService.getSearchResultPage(sc);
-            m.addAttribute("list", list);
+            m.addAttribute("postList", list);
             m.addAttribute("ph", pageHandler);
         } catch (Exception e) {
             e.printStackTrace();

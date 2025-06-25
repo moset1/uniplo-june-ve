@@ -17,4 +17,8 @@ public class SignupService {
         if(userDao.countByEmail((userDto.getUser_email())) > 0) return false;
         return userDao.insert(userDto) == 1;
     }
+
+    public Boolean countEmail(String userEmail) {
+        return userDao.countByEmail(userEmail) > 0;
+    }
 }

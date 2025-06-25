@@ -1,12 +1,13 @@
 package com.barcode.uniplo.domain;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class PostDto {
     private Integer post_id;
     private Integer user_id;
-    private Date created_at;
-    private Date updated_at;
+    private LocalDateTime created_at;
+    private LocalDateTime updated_at;
     private String post_title;
     private String post_content;
     private Integer view_count;
@@ -32,7 +33,7 @@ public class PostDto {
         this.category_sub = category_sub;
     }
 
-    public PostDto(Integer post_id, Integer user_id, Date created_at, Date updated_at, String post_title, String post_content, Integer view_count, Integer like_count, Integer report_count, Integer comment_count, Integer priority, String post_type, String is_private, String category_main, String category_sub, Integer post_id2) {
+    public PostDto(Integer post_id, Integer user_id, LocalDateTime created_at, LocalDateTime updated_at, String post_title, String post_content, Integer view_count, Integer like_count, Integer report_count, Integer comment_count, Integer priority, String post_type, String is_private, String category_main, String category_sub) {
         this.post_id = post_id;
         this.user_id = user_id;
         this.created_at = created_at;
@@ -66,19 +67,19 @@ public class PostDto {
         this.user_id = user_id;
     }
 
-    public Date getCreated_at() {
+    public LocalDateTime getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(Date created_at) {
+    public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
     }
 
-    public Date getUpdated_at() {
+    public LocalDateTime getUpdated_at() {
         return updated_at;
     }
 
-    public void setUpdated_at(Date updated_at) {
+    public void setUpdated_at(LocalDateTime updated_at) {
         this.updated_at = updated_at;
     }
 
@@ -170,4 +171,25 @@ public class PostDto {
         this.category_sub = category_sub;
     }
 
+
+    @Override
+    public String toString() {
+        return "PostDto{" +
+                "post_id=" + post_id +
+                ", user_id=" + user_id +
+                ", created_at=" + created_at +
+                ", updated_at=" + updated_at +
+                ", post_title='" + post_title + '\'' +
+                ", post_content='" + post_content + '\'' +
+                ", view_count=" + view_count +
+                ", like_count=" + like_count +
+                ", report_count=" + report_count +
+                ", comment_count=" + comment_count +
+                ", priority=" + priority +
+                ", post_type='" + post_type + '\'' +
+                ", is_private='" + is_private + '\'' +
+                ", category_main='" + category_main + '\'' +
+                ", category_sub='" + category_sub + '\'' +
+                '}';
+    }
 }

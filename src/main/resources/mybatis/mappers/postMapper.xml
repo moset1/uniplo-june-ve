@@ -14,12 +14,12 @@
 
     <insert id="insert" parameterType="PostDto">
         INSERT INTO post
-            (user_id, created_at, updated_at, post_title, post_content,
+            (post_id, user_id, created_at, updated_at, post_title, post_content,
              view_count, like_count, report_count, comment_count, priority,
              post_type, is_private, category_main, category_sub)
         VALUES
-            (#{user_id}, #{created_at}, #{updated_at}, #{post_title}, #{post_content},
-             #{view_count}, #{like_count}, #{repost_count}, #{comment_count}, #{priority},
+            (null, #{user_id}, #{created_at}, #{updated_at}, #{post_title}, #{post_content},
+             #{view_count}, #{like_count}, #{report_count}, #{comment_count}, #{priority},
              #{post_type}, #{is_private}, #{category_main}, #{category_sub})
     </insert>
 
@@ -68,6 +68,10 @@
     </update>
 
     <sql id="searchCondition">
+        <if test="type != null">
+            AND post_type = #{type}
+        </if>
+
         <choose>
             <when test='option=="T"'>
                 AND post_title LIKE concat('%', #{keyword}, '%')
@@ -86,7 +90,7 @@
     </sql>
 
     <select id="searchSelectPage" parameterType="SearchCondition" resultType="PostDto">
-        SELECT post_id, post_title, user_id, view_count, comment_count, created_at
+        SELECT post_id, post_title, user_id, view_count, comment_count, created_at, post_type
         FROM post
         WHERE true
         <include refid="searchCondition"/>

@@ -9,6 +9,8 @@ public class SearchCondition {
     private String option = "";
     private String keyword = "";
 
+    private PostType type;
+
     public static final int MIN_PAGE_SIZE = 5;
     public static final int DEFAULT_PAGE_SIZE = 10;
     public static final int MAX_PAGE_SIZE = 50;
@@ -26,6 +28,14 @@ public class SearchCondition {
         this.keyword = keyword;
     }
 
+    public SearchCondition(Integer page, Integer pageSize, String option, String keyword, PostType type) {
+        this.page = page;
+        this.pageSize = pageSize;
+        this.option = option;
+        this.keyword = keyword;
+        this.type = type;
+    }
+
     public String getQueryString(Integer page) {
         // ?page=1&pageSize=10&option=T&keyword="title"
         return UriComponentsBuilder.newInstance()
@@ -33,6 +43,7 @@ public class SearchCondition {
                 .queryParam("pageSize", pageSize)
                 .queryParam("option", option)
                 .queryParam("keyword", keyword)
+                .queryParam("type", type != null ? type.name() : "")
                 .build().toString();
     }
 
@@ -77,6 +88,18 @@ public class SearchCondition {
         this.option = option;
     }
 
+    public PostType getType() {
+        return type;
+    }
+
+    public void setType(PostType type) {
+        this.type = type;
+    }
+
+    // 필요 시 String으로도 받게 하려면
+    public void setType(String type) {
+        this.type = PostType.from(type);
+    }
     @Override
     public String toString() {
         return "SearchCondition{" +

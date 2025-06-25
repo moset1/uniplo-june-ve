@@ -46,6 +46,7 @@ public class PageHandler {
                 .queryParam("pageSize", sc.getPageSize())
                 .queryParam("option", sc.getOption())
                 .queryParam("keyword", sc.getKeyword())
+                .queryParam("type", sc.getType() != null ? sc.getType().name() : "")
                 .build().toString();
     }
 
