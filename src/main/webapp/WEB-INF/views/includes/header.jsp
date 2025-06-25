@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="dropdown">
-            <a href="#">BOARD</a>
+            <a href="${contextPath}/post/list">BOARD</a>
             <div class="dropdown-content">
                 <a href="${contextPath}/post/list?type=notice">NOTICE</a>
                 <a href="${contextPath}/post/list?type=faq">FAQ</a>

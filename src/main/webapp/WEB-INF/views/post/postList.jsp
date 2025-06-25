@@ -88,4 +88,9 @@
 </div>
 
 </body>
+<c:if test="${not empty alertMessage}">
+    <script>
+        alert('${alertMessage}');
+    </script>
+</c:if>
 </html>
