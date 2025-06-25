@@ -6,6 +6,7 @@ import com.barcode.uniplo.domain.SearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +28,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public int write(PostDto postDto) {
-        Date now = new Date();
+        LocalDateTime now = LocalDateTime.now();
         postDto.setCreated_at(now);
         postDto.setUpdated_at(now);
 

@@ -102,6 +102,29 @@
         </c:if>
         </tbody>
     </table>
+    <c:if test="${ph.totalPage > 1}">
+        <div style="text-align: center; margin: 2rem 0;">
+            <c:if test="${ph.showPrev}">
+                <a href="${ph.getQueryString(ph.beginPage - 1)}" style="margin: 0 5px;">&laquo; 이전</a>
+            </c:if>
+
+            <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+                <c:choose>
+                    <c:when test="${i == ph.sc.page}">
+                        <span style="margin: 0 5px; font-weight: bold;">${i}</span>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="${ph.getQueryString(i)}" style="margin: 0 5px;">${i}</a>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+
+            <c:if test="${ph.showNext}">
+                <a href="${ph.getQueryString(ph.endPage + 1)}" style="margin: 0 5px;">다음 &raquo;</a>
+            </c:if>
+        </div>
+    </c:if>
+
     <form action="${pageContext.request.contextPath}/post/list" method="get" style="display: flex; justify-content: flex-end; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
         <select name="type" style="padding: 0.4rem;">
             <option value="title" ${ph.sc.option == 'T' ? 'selected' : ''}>제목</option>
