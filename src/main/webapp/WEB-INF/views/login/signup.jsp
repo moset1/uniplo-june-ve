@@ -12,9 +12,10 @@
   <h2>회원가입</h2>
   <div class="card">
     <form action="${pageContext.request.contextPath}/signup/signup" method="post">
-      <input type="email" id="user_email" name="user_email" placeholder="이메일" required />
-      <button type="button" onclick="checkDuplicateEmail()">중복 확인</button>
-      <span id="EmailCheckResult"></span>
+      <div class="email-check-row">
+        <input type="email" id="user_email" name="user_email" placeholder="이메일" required />
+        <button type="button" id="emailCheckBtn" onclick="checkDuplicateEmail()">중복 확인</button>
+      </div><span id="EmailCheckResult"></span>
       <input type="password" name="user_password" placeholder="비밀번호" required minlength="8" maxlength="20" />
       <input type="text" name="user_last_name" placeholder="성" required />
       <input type="text" name="user_first_name" placeholder="이름" required />
