@@ -1,6 +1,8 @@
 package com.barcode.uniplo.dao;
 
 import com.barcode.uniplo.domain.PostDto;
+import com.barcode.uniplo.domain.SearchCondition;
+import io.micrometer.observation.annotation.Observed;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -34,6 +36,11 @@ public class PostRepository implements PostDao {
     }
 
     @Override
+    public List<PostDto> selectAll() {
+        return session.selectList(namespace + "selectAll");
+    }
+
+    @Override
     public PostDto select(Integer post_id) {
         return session.selectOne(namespace + "select", post_id);
     }
@@ -57,4 +64,15 @@ public class PostRepository implements PostDao {
     public int increaseViewCount(Integer post_id) {
         return session.update(namespace + "increaseViewCount", post_id);
     }
+
+    @Override
+    public List<PostDto> searchSelectPage(SearchCondition sc) {
+        return session.selectList(namespace + "searchSelectPage", sc);
+    }
+
+    @Override
+    public int searchResultCount(SearchCondition sc) {
+        return session.selectOne(namespace + "searchResultCount", sc);
+    }
+
 }

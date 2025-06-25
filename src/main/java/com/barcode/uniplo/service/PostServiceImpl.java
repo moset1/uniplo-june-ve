@@ -2,9 +2,11 @@ package com.barcode.uniplo.service;
 
 import com.barcode.uniplo.dao.PostDao;
 import com.barcode.uniplo.domain.PostDto;
+import com.barcode.uniplo.domain.SearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +27,21 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public int write(PostDto postDto) {
+        Date now = new Date();
+        postDto.setCreated_at(now);
+        postDto.setUpdated_at(now);
+
+        postDto.setView_count(0);
+        postDto.setLike_count(0);
+        postDto.setReport_count(0);
+        postDto.setComment_count(0);
+        postDto.setPriority(0);
         return postDao.insert(postDto);
+    }
+
+    @Override
+    public List<PostDto> getList() {
+        return postDao.selectAll();
     }
 
     @Override
@@ -44,5 +60,13 @@ public class PostServiceImpl implements PostService {
         return postDao.update(postDto);
     }
 
+    @Override
+    public int getSearchResultCount(SearchCondition sc) {
+        return postDao.searchResultCount(sc);
+    }
 
+    @Override
+    public List<PostDto> getSearchResultPage(SearchCondition sc) {
+        return postDao.searchSelectPage(sc);
+    }
 }

@@ -28,6 +28,11 @@
         FROM post
     </sql>
 
+    <select id="selectAll" resultType="PostDto">
+        <include refid="selectFromPost"/>
+        ORDER BY created_at DESC, post_id DESC
+    </select>
+
     <select id="select" parameterType="int" resultType="PostDto">
         <include refid="selectFromPost"/>
         WHERE post_id = #{post_id}
@@ -47,7 +52,7 @@
         , category_main = #{category_main}
         , category_sub = #{category_sub}
         , updated_at = now();
-        WHERE post_id = #{post_id} AND user_id = #[user_id]
+        WHERE post_id = #{post_id} AND user_id = #{user_id}
     </update>
 
     <update id="updateCommentCount" parameterType="map">
@@ -61,5 +66,39 @@
         SET view_count = view_count + 1
         WHERE post_id = #{post_id}
     </update>
+
+    <sql id="searchCondition">
+        <choose>
+            <when test='option=="T"'>
+                AND post_title LIKE concat('%', #{keyword}, '%')
+            </when>
+            <when test='option=="W"'>
+                AND user_id LIKE concat('%', #{keyword}, '%')
+            </when>
+            <when test='option=="C"'>
+                AND post_content LIKE concat('%', #{keyword}, '%')
+            </when>
+            <otherwise>
+                AND (post_title LIKE concat('%', #{keyword}, '%')
+                OR post_content LIKE concat('%', #{keyword}, '%'))
+            </otherwise>
+        </choose>
+    </sql>
+
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="PostDto">
+        SELECT post_id, post_title, user_id, view_count, comment_count, created_at
+        FROM post
+        WHERE true
+        <include refid="searchCondition"/>
+        ORDER BY created_at DESC, post_id DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="searchResultCount" parameterType="SearchCondition" resultType="int">
+        SELECT count(*)
+        FROM post
+        WHERE true
+        <include refid="searchCondition"/>
+    </select>
 
 </mapper>

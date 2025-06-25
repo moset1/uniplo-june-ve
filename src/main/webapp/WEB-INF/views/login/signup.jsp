@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:import url="/WEB-INF/views/includes/header.jsp" />
+<c:import url="/WEB-INF/views/common/header.jsp" />
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -11,7 +11,7 @@
 <div class="container">
   <h2>회원가입</h2>
   <div class="card">
-    <form action="${pageContext.request.contextPath}/user/signup" method="post" onsubmit="return formCheck(this)">
+    <form action="${pageContext.request.contextPath}/signup/signup" method="post" onsubmit="return formCheck(this)">
       <input type="email" name="user_email" placeholder="이메일" required />
       <input type="password" name="user_password" placeholder="비밀번호" required />
       <input type="text" name="user_last_name" placeholder="성" required />

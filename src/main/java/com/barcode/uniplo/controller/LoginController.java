@@ -1,7 +1,7 @@
 package com.barcode.uniplo.controller;
 
 import com.barcode.uniplo.domain.UserDto;
-import com.barcode.uniplo.service.UserService;
+import com.barcode.uniplo.service.LoginService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/login")
 public class LoginController {
     @Autowired
-    private UserService userService;
+    private LoginService loginService;
 
     @GetMapping("/login")
     public String showLoginForm() {
@@ -24,11 +24,10 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(@RequestParam("user_email") String email, @RequestParam("user_password") String password, HttpServletRequest request) {
-        UserDto userDto = userService.login(email, password);
+        UserDto userDto = loginService.login(email, password);
         if(userDto != null) {
             HttpSession session = request.getSession();
-            session.setAttribute("user_id", userDto.getUser_id());
-            session.setAttribute("user_email", userDto.getUser_email());
+            session.setAttribute("authUser", userDto);
             return "redirect:/";
         }
         return "login/login";

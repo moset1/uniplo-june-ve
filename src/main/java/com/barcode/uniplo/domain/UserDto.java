@@ -29,7 +29,7 @@ public class UserDto {
         this.user_role = user_role;
     }
 
-    public int getUser_id() {
+    public Integer getUser_id() {
         return user_id;
     }
 

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 </head>
 <body>
-<c:import url="/WEB-INF/views/includes/header.jsp" />
+<c:import url="/WEB-INF/views/common/header.jsp" />
 
 <div class="container">
     <h2>홈</h2>
