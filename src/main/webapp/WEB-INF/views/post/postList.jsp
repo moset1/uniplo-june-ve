@@ -5,65 +5,11 @@
 <head>
     <title>게시판 목록</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" />
-    <style>
-        .post-list-container {
-            max-width: 960px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .post-list-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .post-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .post-table th, .post-table td {
-            padding: 0.75rem;
-            border-bottom: 1px solid #ddd;
-            text-align: left;
-        }
-
-        .post-table th {
-            background-color: #f9f9f9;
-        }
-
-        .post-table tr:hover {
-            background-color: #f3f3f3;
-        }
-
-        .write-button {
-            background-color: #b00020;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-
-        .write-button:hover {
-            background-color: #a0001d;
-        }
-
-        .post-title {
-            color: #111;
-            text-decoration: none;
-        }
-
-        .post-title:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <script src="${pageContext.request.contextPath}/resources/js/common.js" defer></script>
 </head>
 <body>
 
-<jsp:include page="/WEB-INF/views/common/header.jsp" />
+<jsp:include page="/WEB-INF/views/includes/header.jsp" />
 
 <div class="post-list-container">
     <div class="post-list-header">
@@ -102,29 +48,21 @@
         </c:if>
         </tbody>
     </table>
-    <c:if test="${ph.totalPage > 1}">
-        <div style="text-align: center; margin: 2rem 0;">
-            <c:if test="${ph.showPrev}">
-                <a href="${ph.getQueryString(ph.beginPage - 1)}" style="margin: 0 5px;">&laquo; 이전</a>
-            </c:if>
-
-            <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
-                <c:choose>
-                    <c:when test="${i == ph.sc.page}">
-                        <span style="margin: 0 5px; font-weight: bold;">${i}</span>
-                    </c:when>
-                    <c:otherwise>
-                        <a href="${ph.getQueryString(i)}" style="margin: 0 5px;">${i}</a>
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
-
-            <c:if test="${ph.showNext}">
-                <a href="${ph.getQueryString(ph.endPage + 1)}" style="margin: 0 5px;">다음 &raquo;</a>
+    <div class="paging-container">
+        <div class="paging">
+            <c:if test="${totalCount!=null && totalCount!=0}">
+                <c:if test="${ph.showPrev}">
+                    <a class="page" href="<c:url value="/board/list${ph.sc.getQueryString(ph.beginPage-1)}"/>">&lt;</a>
+                </c:if>
+                <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+                    <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value="/board/list${ph.sc.getQueryString(i)}"/>">${i}</a>
+                </c:forEach>
+                <c:if test="${ph.showNext}">
+                    <a class="page" href="<c:url value="/board/list${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</a>
+                </c:if>
             </c:if>
         </div>
-    </c:if>
-
+    </div>
     <form action="${pageContext.request.contextPath}/post/list" method="get" style="display: flex; justify-content: flex-end; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
         <select name="type" style="padding: 0.4rem;">
             <option value="title" ${ph.sc.option == 'T' ? 'selected' : ''}>제목</option>
