@@ -1,6 +1,7 @@
 package com.barcode.uniplo.controller;
 
 import com.barcode.uniplo.domain.*;
+import com.barcode.uniplo.exception.UnauthorizedAccessException;
 import com.barcode.uniplo.service.PostService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -54,23 +55,21 @@ public class PostController {
     }
 
     @GetMapping("/{post_id}")
-    public String read(@PathVariable("post_id") Integer post_id, HttpSession session, HttpServletResponse response, Model m) throws IOException {
+    public String read(@PathVariable("post_id") Integer post_id, HttpSession session, HttpServletResponse response, HttpServletRequest request, Model m) throws IOException {
         PostDto postDto = postService.read(post_id);
         UserDto loginUser = (UserDto) session.getAttribute("authUser");
 
         if("Y".equals(postDto.getIs_private())) {
             if(loginUser == null || !loginUser.getUser_id().equals(postDto.getUser_id()) ) {
-                response.setContentType("text/html; charset=UTF-8");
-                PrintWriter out = response.getWriter();
-                out.println("<script>alert('비공개 게시물입니다. 본인만 열람할 수 있습니다.'); location.href='/post/list';</script>");
-                out.flush();
-                return null;
+                throw new UnauthorizedAccessException("비공개 게시물입니다.");
             }
         }
 
         m.addAttribute("postDto", postDto);
         return "post/post";
     }
+
+//    @GetMapping("/editForm")
 
     @GetMapping("/write")
     public String write(HttpSession session, Model m, RedirectAttributes rattr) {

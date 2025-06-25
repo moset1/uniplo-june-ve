@@ -24,7 +24,7 @@
     </insert>
 
     <sql id="selectFromPost">
-        SELECT post_id, post_title, post_content, user_id, view_count, comment_count, created_at
+        SELECT post_id, post_title, post_content, user_id, view_count, comment_count, created_at, is_private
         FROM post
     </sql>
 
@@ -90,7 +90,7 @@
     </sql>
 
     <select id="searchSelectPage" parameterType="SearchCondition" resultType="PostDto">
-        SELECT post_id, post_title, user_id, view_count, comment_count, created_at, post_type
+        SELECT post_id, post_title, user_id, view_count, comment_count, created_at, post_type, is_private
         FROM post
         WHERE true
         <include refid="searchCondition"/>
