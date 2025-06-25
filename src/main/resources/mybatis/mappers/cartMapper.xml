@@ -20,6 +20,15 @@
         SELECT * FROM cart WHERE user_id = #{value}
     </select>
 
+    <!--단일 상품 조회(FOR 수량 업데이트)-->
+    <select id="getCartItem" parameterType="CartDto" resultType="CartDto">
+        SELECT * FROM cart
+        WHERE user_id = #{user_id}
+          AND item_id = #{item_id}
+          AND item_color_code = #{item_color_code}
+          AND item_size_code = #{item_size_code}
+    </select>
+
     <!-- 장바구니에서 항목 삭제 -->
     <delete id="deleteCartItem" parameterType="CartDto">
         DELETE FROM cart

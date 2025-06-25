@@ -24,7 +24,6 @@
             <th>사이즈</th>
             <th>수량</th>
             <th>등록일</th>
-            <th>수정</th>
             <th>삭제</th>
         </tr>
         <c:forEach var="item" items="${cartList}">
@@ -33,17 +32,38 @@
                 <td>${item.item_color_code}</td>
                 <td>${item.item_size_code}</td>
                 <td>
-                    <form action="${pageContext.request.contextPath}/cart/update" method="post">
-                        <input type="hidden" name="item_id" value="${item.item_id}" />
-                        <input type="hidden" name="item_color_code" value="${item.item_color_code}" />
-                        <input type="hidden" name="item_size_code" value="${item.item_size_code}" />
-                        <input type="number" name="cart_item_cnt" value="${item.cart_item_cnt}" min="1" />
+                    <table style="border-collapse: collapse;">
+                        <tr>
+                            <!-- [-] 버튼 -->
+                            <td>
+                                <form action="${pageContext.request.contextPath}/cart/update" method="post">
+                                    <input type="hidden" name="item_id" value="${item.item_id}" />
+                                    <input type="hidden" name="item_color_code" value="${item.item_color_code}" />
+                                    <input type="hidden" name="item_size_code" value="${item.item_size_code}" />
+                                    <input type="hidden" name="num" value="-1" />
+                                    <button type="submit" style="width: 30px;">-</button>
+                                </form>
+                            </td>
+
+                            <!-- 수량 -->
+                            <td style="padding: 0 8px; text-align: center; min-width: 30px;">
+                                    ${item.cart_item_cnt}
+                            </td>
+
+                            <!-- [+] 버튼 -->
+                            <td>
+                                <form action="${pageContext.request.contextPath}/cart/update" method="post">
+                                    <input type="hidden" name="item_id" value="${item.item_id}" />
+                                    <input type="hidden" name="item_color_code" value="${item.item_color_code}" />
+                                    <input type="hidden" name="item_size_code" value="${item.item_size_code}" />
+                                    <input type="hidden" name="num" value="1" />
+                                    <button type="submit" style="width: 30px;">+</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
                 </td>
                 <td>${item.cart_reg_date}</td>
-                <td>
-                    <input type="submit" value="변경" />
-                    </form>
-                </td>
                 <td>
                     <form action="${pageContext.request.contextPath}/cart/delete" method="post">
                         <input type="hidden" name="item_id" value="${item.item_id}" />
@@ -55,6 +75,11 @@
             </tr>
         </c:forEach>
     </table>
+    <div class="order-button">
+        <form action="${pageContext.request.contextPath}/cart/order" method="post">
+            <button type="submit" class="order-button">주문하기</button>
+        </form>
+    </div>
 </c:if>
 </body>
 <c:import url="/WEB-INF/views/includes/footer.jsp" />

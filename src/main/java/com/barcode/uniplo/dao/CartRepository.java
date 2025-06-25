@@ -23,6 +23,10 @@ public class CartRepository implements CartDao {
         return sqlSession.selectList(namespace + ".getCartList", userId);
     }
 
+    public CartDto getCartItem(CartDto cartDto) {
+        return sqlSession.selectOne(namespace + ".getCartItem", cartDto);
+    }
+
     public int deleteCartItem(CartDto cart) {
         return sqlSession.delete(namespace + ".deleteCartItem", cart);
     }
