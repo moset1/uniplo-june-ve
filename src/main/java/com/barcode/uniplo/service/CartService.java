@@ -40,6 +40,9 @@ public class CartService {
         }
     }
 
+    public CartDto getCartItem(CartDto cartDto) throws Exception {
+        return cartDao.getCartItem(cartDto);
+    }
 
     public List<CartDto> getItems(String userId) throws Exception {
         return cartDao.getCartList(userId);

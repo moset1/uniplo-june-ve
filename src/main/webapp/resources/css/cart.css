@@ -54,7 +54,8 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #cc0010;
+    background-color: #e60012;
+    color: white;
 }
 
 /* 반응형 고려 */
