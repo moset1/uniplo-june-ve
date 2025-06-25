@@ -1,5 +1,10 @@
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    pageContext.setAttribute("formatter", formatter);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +42,7 @@
                     </a>
                 </td>
                 <td>${postDto.user_id}</td>
-                <td><fmt:formatDate value="${postDto.created_at}" pattern="yyyy-MM-dd" /></td>
+                <td> ${postDto.created_at.format(formatter)}</td>
                 <td>${postDto.view_count}</td>
             </tr>
         </c:forEach>

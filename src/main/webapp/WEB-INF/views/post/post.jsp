@@ -1,7 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 
+<%
+  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+  pageContext.setAttribute("formatter", formatter);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +21,7 @@
   <div class="post-header">
     <h2>${postDto.post_title}</h2>
     <div class="post-meta">
-      작성자: ${postDto.user_id} | 작성일: <fmt:formatDate value="${postDto.created_at}" pattern="yyyy-MM-dd HH:mm"/>
+      작성자: ${postDto.user_id} | 작성일: ${postDto.created_at.format(formatter)}
     </div>
   </div>
 
