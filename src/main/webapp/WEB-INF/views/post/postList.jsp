@@ -18,7 +18,14 @@
 
 <div class="post-list-container">
     <div class="post-list-header">
-        <h2>게시판</h2>
+        <h2>
+            <c:choose>
+                <c:when test="${ph.sc.type == 'QNA'}">Q&A 게시판</c:when>
+                <c:when test="${ph.sc.type == 'FAQ'}">FAQ</c:when>
+                <c:when test="${ph.sc.type == 'NOTICE'}">공지사항</c:when>
+                <c:otherwise>전체 게시판</c:otherwise>
+            </c:choose>
+        </h2>
         <a href="${pageContext.request.contextPath}/post/write" class="write-button">글쓰기</a>
     </div>
 
