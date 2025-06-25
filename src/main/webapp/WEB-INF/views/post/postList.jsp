@@ -53,21 +53,29 @@
         </c:if>
         </tbody>
     </table>
-    <div class="paging-container">
-        <div class="paging">
-            <c:if test="${totalCount!=null && totalCount!=0}">
-                <c:if test="${ph.showPrev}">
-                    <a class="page" href="<c:url value="/board/list${ph.sc.getQueryString(ph.beginPage-1)}"/>">&lt;</a>
-                </c:if>
-                <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
-                    <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value="/board/list${ph.sc.getQueryString(i)}"/>">${i}</a>
-                </c:forEach>
-                <c:if test="${ph.showNext}">
-                    <a class="page" href="<c:url value="/board/list${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</a>
-                </c:if>
-            </c:if>
-        </div>
+
+    <div style="text-align: center; margin-bottom: 2rem;">
+        <c:if test="${ph.showPrev}">
+            <a href="${pageContext.request.contextPath}/post/list${ph.queryString(ph.beginPage - 1)}" style="margin: 0 0.5rem;">이전</a>
+        </c:if>
+
+        <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+            <c:choose>
+                <c:when test="${i == ph.sc.page}">
+                    <strong style="margin: 0 0.5rem; color: #b00020;">${i}</strong>
+                </c:when>
+                <c:otherwise>
+                    <a href="${pageContext.request.contextPath}/post/list${ph.queryString(i)}" style="margin: 0 0.5rem;">${i}</a>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+
+        <c:if test="${ph.showNext}">
+            <a href="${pageContext.request.contextPath}/post/list${ph.queryString(ph.endPage + 1)}" style="margin: 0 0.5rem;">다음</a>
+        </c:if>
     </div>
+
+
     <form action="${pageContext.request.contextPath}/post/list" method="get" style="display: flex; justify-content: flex-end; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
         <select name="type" style="padding: 0.4rem;">
             <option value="title" ${ph.sc.option == 'T' ? 'selected' : ''}>제목</option>

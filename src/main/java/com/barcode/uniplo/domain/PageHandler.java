@@ -23,7 +23,7 @@ public class PageHandler {
     public PageHandler(int totalCount, SearchCondition sc) {
         this.totalCount = totalCount;
         this.sc = sc;
-
+        doPaging(totalCount, sc);
     }
 
     private void doPaging(int totalCount, SearchCondition sc) {
@@ -33,6 +33,10 @@ public class PageHandler {
         this.endPage = Math.min(beginPage + NAV_SIZE - 1, totalPage);
         this.showPrev = beginPage != 1;
         this.showNext = endPage != totalPage;
+    }
+
+    public String queryString(Integer page) {
+        return getQueryString(page);  // alias
     }
 
     public String getQueryString() {

@@ -22,17 +22,17 @@ class PostRepositoryTest {
     @Test
     void insert() {
 
-        for(int i=0; i<20; i++) {
-            PostDto dto = new PostDto(null, 11, LocalDateTime.now(), LocalDateTime.now(), "QNA" + i,"no_content" + i, 0, 0, 0, 0, 0,"QNA", "N", "문의", "배송");
+        for(int i=0; i<200; i++) {
+            PostDto dto = new PostDto(null, 1, LocalDateTime.now(), LocalDateTime.now(), "QNA" + i,"no_content" + i, 0, 0, 0, 0, 0,"QNA", "N", "문의", "배송");
             postRepository.insert(dto);
         }
-        for(int i=0; i<20; i++) {
-            PostDto dto = new PostDto(null, 11, LocalDateTime.now(), LocalDateTime.now(), "FAQ" + i,"no_content" + i, 0, 0, 0, 0, 0,"FAQ", "N", "문의", "배송");
+        for(int i=0; i<200; i++) {
+            PostDto dto = new PostDto(null, 1, LocalDateTime.now(), LocalDateTime.now(), "FAQ" + i,"no_content" + i, 0, 0, 0, 0, 0,"FAQ", "N", "문의", "배송");
             postRepository.insert(dto);
         }
 
-        for(int i=0; i<20; i++) {
-            PostDto dto = new PostDto(null, 11, LocalDateTime.now(), LocalDateTime.now(), "NOTICE" + i,"no_content" + i, 0, 0, 0, 0, 0,"NOTICE", "N", "문의", "배송");
+        for(int i=0; i<200; i++) {
+            PostDto dto = new PostDto(null, 1, LocalDateTime.now(), LocalDateTime.now(), "NOTICE" + i,"no_content" + i, 0, 0, 0, 0, 0,"NOTICE", "N", "문의", "배송");
             postRepository.insert(dto);
         }
     }

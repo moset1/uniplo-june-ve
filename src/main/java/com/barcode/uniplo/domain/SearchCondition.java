@@ -57,7 +57,7 @@ public class SearchCondition {
     }
 
     public void setPage(Integer page) {
-        this.page = page;
+        this.page = (page != null && page > 0) ? page : 1;
     }
 
     public Integer getPageSize() {
@@ -65,7 +65,10 @@ public class SearchCondition {
     }
 
     public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
+        if (pageSize == null) this.pageSize = DEFAULT_PAGE_SIZE;
+        else if (pageSize < MIN_PAGE_SIZE) this.pageSize = MIN_PAGE_SIZE;
+        else if (pageSize > MAX_PAGE_SIZE) this.pageSize = MAX_PAGE_SIZE;
+        else this.pageSize = pageSize;
     }
 
     public Integer getOffset() {
