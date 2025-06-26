@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
+
 public class ItemRepository implements ItemDao {
     @Autowired
     private SqlSession sqlSession;
@@ -26,7 +27,9 @@ public class ItemRepository implements ItemDao {
         return sqlSession.selectOne(namespace + ".selectItemById", id);
     }
 
+
     public int getPriceByItemId(int id) {
         return sqlSession.selectOne(namespace + ".getPriceByItemId", id);
     }
 }
+
