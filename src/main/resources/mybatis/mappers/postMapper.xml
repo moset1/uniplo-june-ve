@@ -7,6 +7,10 @@
         SELECT count(*) FROM post
     </select>
 
+    <delete id="deleteAll">
+        DELETE FROM post
+    </delete>
+
     <delete id="delete" parameterType="map">
         DELETE FROM post
         WHERE post_id = #{post_id} AND user_id = #{user_id}
@@ -55,12 +59,6 @@
         WHERE post_id = #{post_id} AND user_id = #{user_id}
     </update>
 
-    <update id="updateCommentCount" parameterType="map">
-        UPDATE post
-        SET comment_count = comment_count + #{count}
-        WHERE post_id= #{post_id}
-    </update>
-
     <update id="increaseViewCount" parameterType="int">
         UPDATE post
         SET view_count = view_count + 1
@@ -104,5 +102,11 @@
         WHERE true
         <include refid="searchCondition"/>
     </select>
+
+    <update id="updateCommentCount" parameterType="map">
+        UPDATE post
+        SET comment_count = comment_count + #{count}
+        WHERE post_id= #{post_id}
+    </update>
 
 </mapper>
