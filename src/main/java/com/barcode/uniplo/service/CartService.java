@@ -11,9 +11,14 @@ import java.util.List;
 @Service
 public class CartService {
 
+    private final CartDao cartDao;
+    private final ItemDao itemDao;
+
     @Autowired
-    private CartDao cartDao;
-    private ItemDao itemDao;
+    public CartService(CartDao cartDao, ItemDao itemDao) {
+        this.cartDao = cartDao;
+        this.itemDao = itemDao;
+    }
 
     public void addToCart(CartDto cartDto) throws Exception {
         if (cartDao.isDuplicate(cartDto)) {

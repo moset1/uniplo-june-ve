@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class ItemRepository {
+public class ItemRepository implements ItemDao {
     @Autowired
     private SqlSession sqlSession;
 

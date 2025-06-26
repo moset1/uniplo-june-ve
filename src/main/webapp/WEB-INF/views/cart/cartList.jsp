@@ -22,8 +22,8 @@
             <th>상품 ID</th>
             <th>색상</th>
             <th>사이즈</th>
+            <th>가격</th>
             <th>수량</th>
-            <th>등록일</th>
             <th>삭제</th>
         </tr>
         <c:forEach var="item" items="${cartList}">
@@ -31,6 +31,7 @@
                 <td>${item.item_id}</td>
                 <td>${item.item_color_code}</td>
                 <td>${item.item_size_code}</td>
+                <td>${item.cart_item_price}</td>
                 <td>
                     <table style="border-collapse: collapse;">
                         <tr>
@@ -63,7 +64,7 @@
                         </tr>
                     </table>
                 </td>
-                <td>${item.cart_reg_date}</td>
+
                 <td>
                     <form action="${pageContext.request.contextPath}/cart/delete" method="post">
                         <input type="hidden" name="item_id" value="${item.item_id}" />
@@ -75,6 +76,9 @@
             </tr>
         </c:forEach>
     </table>
+    <div style="margin-top: 16px; text-align: right; font-weight: bold;">
+        총 가격: <span style="color: red;">${TotalPrice}</span> 원
+    </div>
     <div class="order-button">
         <form action="${pageContext.request.contextPath}/cart/order" method="post">
             <button type="submit" class="order-button">주문하기</button>

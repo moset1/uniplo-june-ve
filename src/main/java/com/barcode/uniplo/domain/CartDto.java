@@ -23,6 +23,10 @@ public class CartDto {
         this.cart_item_cnt = cart_item_cnt;
     }
 
+    public static CartDto of(){
+        return new CartDto("1", "1", "1", "1", new Date(), 1);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
