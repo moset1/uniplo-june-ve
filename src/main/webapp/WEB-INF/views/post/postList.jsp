@@ -46,10 +46,19 @@
             <tr>
                 <td>${postDto.post_id}</td>
                 <td>
-                    <a class="post-title" href="${pageContext.request.contextPath}/post/${postDto.post_id}">
-                            ${postDto.post_title}
-                            <c:if test="${postDto.is_private == 'Y'}"><i class="fa-solid fa-lock"></i></c:if>
+                    <a class="post-title"
+                       href="${pageContext.request.contextPath}/post/${postDto.post_id}"
+                       style="${postDto.priority >= 1 ? 'font-weight: bold;' : ''}">
 
+                        <c:if test="${postDto.priority >= 1}">
+                            <span style="color: red;">[중요]</span>
+                        </c:if>
+
+                            ${postDto.post_title}
+
+                        <c:if test="${postDto.is_private == 'Y'}">
+                            <i class="fa-solid fa-lock" style="margin-left: 4px;"></i>
+                        </c:if>
                     </a>
                 </td>
                 <td>${postDto.user_id}</td>

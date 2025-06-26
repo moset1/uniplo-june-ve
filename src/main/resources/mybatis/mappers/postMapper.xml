@@ -28,13 +28,13 @@
     </insert>
 
     <sql id="selectFromPost">
-        SELECT post_id, post_title, post_content, user_id, view_count, comment_count, created_at, updated_at, is_private
+        SELECT post_id, post_title, post_content, user_id, view_count, comment_count, created_at, updated_at, is_private, priority
         FROM post
     </sql>
 
     <select id="selectAll" resultType="PostDto">
         <include refid="selectFromPost"/>
-        ORDER BY created_at DESC, post_id DESC
+        ORDER BY priority DESC, created_at DESC, post_id DESC
     </select>
 
     <select id="select" parameterType="int" resultType="PostDto">
@@ -88,11 +88,11 @@
     </sql>
 
     <select id="searchSelectPage" parameterType="SearchCondition" resultType="PostDto">
-        SELECT post_id, post_title, user_id, view_count, comment_count, created_at, post_type, is_private
+        SELECT post_id, post_title, user_id, view_count, comment_count, created_at, post_type, is_private, priority
         FROM post
         WHERE true
         <include refid="searchCondition"/>
-        ORDER BY created_at DESC, post_id DESC
+        ORDER BY priority DESC, created_at DESC, post_id DESC
         LIMIT #{offset}, #{pageSize}
     </select>
 

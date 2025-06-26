@@ -37,7 +37,6 @@ public class PostServiceImpl implements PostService {
         postDto.setLike_count(0);
         postDto.setReport_count(0);
         postDto.setComment_count(0);
-        postDto.setPriority(0);
         return postDao.insert(postDto);
     }
 
