@@ -96,7 +96,7 @@ public class PostController {
             if (rowCnt != 1)
                 throw new Exception("Write failed");
             rattr.addFlashAttribute("msg", "WRT_OK");
-            return "redirect:/post/" + postDto.getPost_id();
+            return "redirect:/post/list" ;
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute(postDto);
