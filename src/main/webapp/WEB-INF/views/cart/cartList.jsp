@@ -23,7 +23,7 @@
             <th>색상</th>
             <th>사이즈</th>
             <th>수량</th>
-            <th>등록일</th>
+            <th>단가</th>
             <th>삭제</th>
         </tr>
         <c:forEach var="item" items="${cartList}">
@@ -63,7 +63,7 @@
                         </tr>
                     </table>
                 </td>
-                <td>${item.cart_reg_date}</td>
+                <td>${item.cart_item_price}</td>
                 <td>
                     <form action="${pageContext.request.contextPath}/cart/delete" method="post">
                         <input type="hidden" name="item_id" value="${item.item_id}" />

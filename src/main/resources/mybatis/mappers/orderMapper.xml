@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.barcode.uniplo.repository.OrderRepository">
+
+    <!-- 주문 저장 (order_id는 auto_increment로 가정) -->
+    <insert id="insertOrder" parameterType="OrderDto" useGeneratedKeys="true" keyProperty="order_id">
+        INSERT INTO `order` (user_id, order_status, order_price)
+        VALUES (#{user_id}, #{order_status}, #{order_price})
+    </insert>
+
+    <!-- 주문상품 저장 -->
+    <insert id="insertOrderProduct" parameterType="OrderProductDto">
+        INSERT INTO orderedproduct (
+            order_id, item_id, item_color_code, item_size_code,
+            ored_item_name, ored_item_price, ored_item_cnt
+        )
+        VALUES (
+                   #{order_id}, #{item_id}, #{item_color_code}, #{item_size_code},
+                   #{ored_item_name}, #{ored_item_price}, #{ored_item_cnt}
+               )
+    </insert>
+</mapper>
