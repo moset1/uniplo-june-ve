@@ -39,4 +39,8 @@ public class CartRepository implements CartDao {
     public int updateCnt(CartDto cart) {
         return sqlSession.update(namespace + ".updateCnt", cart);
     }
+
+//    public int getTotalPriceByUserId(String userId) {
+//        return sqlSession.selectOne(namespace + ".getTotalPriceByUserId", userId);
+//    }
 }

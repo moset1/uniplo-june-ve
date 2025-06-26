@@ -1,6 +1,7 @@
 package com.barcode.uniplo.service;
 
 import com.barcode.uniplo.dao.CartDao;
+import com.barcode.uniplo.dao.ItemDao;
 import com.barcode.uniplo.domain.CartDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ public class CartService {
 
     @Autowired
     private CartDao cartDao;
+    private ItemDao itemDao;
 
     public void addToCart(CartDto cartDto) throws Exception {
         if (cartDao.isDuplicate(cartDto)) {
@@ -44,8 +46,15 @@ public class CartService {
         return cartDao.getCartItem(cartDto);
     }
 
+
     public List<CartDto> getItems(String userId) throws Exception {
-        return cartDao.getCartList(userId);
+        List<CartDto> cartList = cartDao.getCartList(userId);
+        // 각 아이템에 대한 가격 세터 기능을 여기서 수행해야 해.
+        // 리스트에서 하나씩 뽑아서, 아이템id기반 조회 후 가격 set.
+        for (CartDto dto : cartList) {
+            dto.setCart_item_price(itemDao.getPriceByItemId(Integer.parseInt(dto.getItem_id())));
+        }
+        return cartList;
     }
 
     public void deleteItem(CartDto cartDto) throws Exception {

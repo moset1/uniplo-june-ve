@@ -4,7 +4,6 @@ import com.barcode.uniplo.domain.UserDto;
 import com.barcode.uniplo.service.CartService;
 import org.springframework.ui.Model;
 import com.barcode.uniplo.domain.CartDto;
-import com.barcode.uniplo.dao.CartRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,8 +32,17 @@ public class CartController {
 
         //System.out.println("userId from session = " + userId); 세션에서 잘 출력되는지 확인해 봄
 
+
+        // CartDto가 담긴 cartlist 반환. . . .
         List<CartDto> cartList = cartService.getItems(userId);
         model.addAttribute("cartList", cartList);
+        int totalPrice = 0;
+        for (CartDto dto : cartList) {
+            int itemPrice = dto.getCart_item_price();
+            int cnt = dto.getCart_item_cnt();
+            totalPrice += itemPrice * cnt;
+        }
+        model.addAttribute("TotalPrice", totalPrice);
         return "cart/cartList";
     }
 
@@ -65,7 +73,7 @@ public class CartController {
 
     // 장바구니 수량 수정
     @PostMapping("/update")
-    public String updateCnt(@RequestParam("item_id") String item_id,
+    public String updateCnt(@RequestParam("item_id") int item_id,
                             @RequestParam("item_color_code") String item_color_code,
                             @RequestParam("item_size_code") String item_size_code,
                             @RequestParam("num") int num,
@@ -76,7 +84,7 @@ public class CartController {
 
         CartDto cartDto = new CartDto();
         cartDto.setUser_id(userId);
-        cartDto.setItem_id(item_id);
+        cartDto.setItem_id(Integer.toString(item_id)); //item_id);
         cartDto.setItem_color_code(item_color_code);
         cartDto.setItem_size_code(item_size_code);
 
