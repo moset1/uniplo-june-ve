@@ -24,4 +24,6 @@ public interface PostService {
     int getSearchResultCount(SearchCondition sc);
 
     List<PostDto> getSearchResultPage(SearchCondition sc);
-    }
+
+    Boolean deletePost(Integer post_id, Integer user_id);
+}
