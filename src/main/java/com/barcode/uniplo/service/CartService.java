@@ -13,6 +13,7 @@ public class CartService {
 
     @Autowired
     private CartDao cartDao;
+    @Autowired
     private ItemDao itemDao;
 
     public void addToCart(CartDto cartDto) throws Exception {
