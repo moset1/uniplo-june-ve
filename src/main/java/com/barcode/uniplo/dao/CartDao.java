@@ -16,4 +16,6 @@ public interface CartDao {
     boolean isDuplicate(CartDto cart) throws Exception;
 
     int updateCnt(CartDto cart) throws Exception;
+
+//    int getTotalPriceByUserId(String userId) throws Exception;
 }

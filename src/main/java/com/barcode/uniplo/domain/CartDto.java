@@ -9,7 +9,8 @@ public class CartDto {
     private String item_color_code;
     private String item_size_code;
     private Date cart_reg_date;
-    private int cart_item_cnt = 1; // 추가된 필드
+    private int cart_item_cnt = 1;// 추가된 필드
+    private int cart_item_price;
 
     public CartDto() {}
 
@@ -54,4 +55,7 @@ public class CartDto {
 
     public int getCart_item_cnt() { return cart_item_cnt; }
     public void setCart_item_cnt(int cart_item_cnt) { this.cart_item_cnt = cart_item_cnt; }
+
+    public int getCart_item_price() { return cart_item_price; }
+    public void setCart_item_price(int cart_item_price) { this.cart_item_price = cart_item_price; }
 }
