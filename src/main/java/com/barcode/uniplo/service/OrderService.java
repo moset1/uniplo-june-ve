@@ -1,0 +1,53 @@
+package com.barcode.uniplo.service;
+
+import com.barcode.uniplo.dao.CartDao;
+import com.barcode.uniplo.dao.OrderDao;
+import com.barcode.uniplo.domain.CartDto;
+import com.barcode.uniplo.domain.OrderDto;
+import com.barcode.uniplo.domain.OrderProductDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+@Service
+public class OrderService {
+    @Autowired
+    private OrderDao orderDao;
+
+    @Autowired
+    private CartDao cartDao;
+
+    @Transactional
+    public void makeOrder(String userId) throws Exception {
+        // 1. 장바구니 조회
+        List<CartDto> cartList = cartDao.getCartList(userId);
+
+        // 2. 주문 저장 (order)
+        OrderDto order = new OrderDto();
+        order.setUser_id(userId);
+        order.setOrder_status("주문 완료");
+        order.setOrder_price(null); // 나중에 계산한다면 set 가능
+        orderDao.insertOrder(order); // order_id가 자동으로 채워짐
+
+        // 3. 주문상품 저장 (orderproduct)
+        for (CartDto cart : cartList) {
+            OrderProductDto op = new OrderProductDto();
+            op.setOrder_id(order.getOrder_id());
+            op.setItem_id(cart.getItem_id());
+            op.setItem_color_code(cart.getItem_color_code());
+            op.setItem_size_code(cart.getItem_size_code());
+            op.setOred_item_cnt(cart.getCart_item_cnt());
+            op.setOred_item_name(null);  // 나중에 상품 테이블에서 join해서 불러와도 됨
+            op.setOred_item_price(null); // 가격도 마찬가지
+
+            orderDao.insertOrderProduct(op);
+        }
+
+        // 4. 장바구니 비우기
+        for (CartDto cart : cartList) {
+            cartDao.deleteCartItem(cart);
+        }
+    }
+}
