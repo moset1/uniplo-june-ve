@@ -75,4 +75,9 @@ public class PostRepository implements PostDao {
         return session.selectOne(namespace + "searchResultCount", sc);
     }
 
+
+    @Override
+    public Boolean deletePost(Map map) {
+        return 1== session.delete(namespace + "delete", map);
+    }
 }

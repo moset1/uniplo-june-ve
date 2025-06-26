@@ -28,4 +28,6 @@ public interface PostDao {
     List<PostDto> searchSelectPage(SearchCondition sc);
 
     int searchResultCount(SearchCondition sc);
+
+    public Boolean deletePost(Map map);
 }

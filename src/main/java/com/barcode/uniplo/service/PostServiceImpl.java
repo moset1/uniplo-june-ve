@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -69,5 +70,15 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<PostDto> getSearchResultPage(SearchCondition sc) {
         return postDao.searchSelectPage(sc);
+    }
+
+    @Override
+    public Boolean deletePost(Integer post_id, Integer user_id) {
+
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("post_id", post_id);
+        map.put("user_id", user_id);
+        return postDao.deletePost(map);
     }
 }

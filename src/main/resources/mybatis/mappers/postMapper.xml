@@ -24,7 +24,7 @@
     </insert>
 
     <sql id="selectFromPost">
-        SELECT post_id, post_title, post_content, user_id, view_count, comment_count, created_at, is_private
+        SELECT post_id, post_title, post_content, user_id, view_count, comment_count, created_at, updated_at, is_private
         FROM post
     </sql>
 
@@ -51,7 +51,7 @@
         , is_private = #{is_private}
         , category_main = #{category_main}
         , category_sub = #{category_sub}
-        , updated_at = now();
+        , updated_at = now()
         WHERE post_id = #{post_id} AND user_id = #{user_id}
     </update>
 
