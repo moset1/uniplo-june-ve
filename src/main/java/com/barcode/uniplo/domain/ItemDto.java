@@ -29,6 +29,10 @@ public class ItemDto {
         this.imageUrl = imageUrl;
     }
 
+    public static ItemDto of(){
+        return new ItemDto(1,"test",300,"test",LocalDateTime.now(), "t", "t", "M", 123);
+    }
+
     public int getId() {
         return id;
     }
