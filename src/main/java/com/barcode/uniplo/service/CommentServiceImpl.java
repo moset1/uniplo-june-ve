@@ -25,16 +25,16 @@ public class CommentServiceImpl implements CommentService {
         return commentDao.count(post_id);
     }
 
-    @Transactional(rollbackFor = Exception.class)
     @Override
+    @Transactional(rollbackFor = Exception.class)  // updateCommentCount랑 delete 모두 성공해야하니까 @Transactional. 예외 발생하면 rollback해라.
     public int remove(Integer comment_id, Integer post_id, Integer user_id) {
         int rowCount = postDao.updateCommentCount(post_id, -1);
         rowCount = commentDao.delete(comment_id, user_id);
         return rowCount;
     }
 
-    @Transactional(rollbackFor = Exception.class)
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int write(CommentDto commentDto) {
         postDao.updateCommentCount(commentDto.getPost_id(), 1);
         return commentDao.insert(commentDto);

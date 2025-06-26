@@ -26,9 +26,6 @@ public class CommentServiceImplTest {
 
     @Test
     public void remove() throws Exception {
-
-
-
 //        postDao.deleteAll();
 //
 //        PostDto postDto = new PostDto(null, 1, LocalDateTime.now(), LocalDateTime.now(), "제목입니당","내용입니당내용입니당", 0, 0, 0, 0, 0,"QNA", "N", "문의", "배송");
