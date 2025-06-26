@@ -14,9 +14,4 @@
         WHERE gender_id = #{gender_id}
     </select>
 
-    <select id="getItemCateDetailsByCate" parameterType="int" resultType="ItemCateDetailDto">
-        SELECT item_cate_detail_id, item_cate_detail_name, item_cate_id
-        FROM item_cate_detail
-        WHERE item_cate_id = #{item_cate_id}
-    </select>
 </mapper>

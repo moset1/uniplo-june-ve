@@ -14,9 +14,4 @@ public interface ItemDao {
     // 아이템 단품 가격 조회
     int getPriceByItemId(int id);
 
-
-    // 추가
-    // 아이템 단품 가격 조회
-    int getPriceByItemId(int id);
-
 }
