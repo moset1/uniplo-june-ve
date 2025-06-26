@@ -15,7 +15,16 @@
       <div class="email-check-row">
         <input type="email" id="user_email" name="user_email" placeholder="이메일" required />
         <button type="button" id="emailCheckBtn" onclick="checkDuplicateEmail()">중복 확인</button>
-      </div><span id="EmailCheckResult"></span>
+        <button type="button" id="sendAuthCodeBtn" onclick="sendAuthCode()">인증코드 발송</button>
+      </div>
+      <span id="EmailCheckResult"></span><br/>
+
+      <div class="auth-code-row">
+        <input type="text" id="auth_code" name="auth_code" placeholder="인증코드 입력" />
+        <button type="button" onclick="verifyAuthCode()">인증코드 확인</button>
+      </div>
+      <span id="authCodeResult"></span>
+
       <input type="password" name="user_password" placeholder="비밀번호" required minlength="8" maxlength="20" />
       <input type="text" name="user_last_name" placeholder="성" required />
       <input type="text" name="user_first_name" placeholder="이름" required />
@@ -25,49 +34,15 @@
       <button type="submit">회원가입</button>
     </form>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const form = document.querySelector("form");
-        form.addEventListener("submit", function (e) {
-          const password = form.user_password.value.trim();
 
-          if (password.length < 8 || password.length > 20) {
-            alert("비밀번호는 8자 이상 20자 이하로 입력해주세요.");
-            e.preventDefault();
-            return;
-          }
-
-          const requiredFields = ["user_email", "user_last_name", "user_first_name", "user_phone_number", "user_birth_date"];
-          for (const name of requiredFields) {
-            if (!form[name].value.trim()) {
-              alert("모든 항목을 입력해주세요.");
-              e.preventDefault();
-              return;
-            }
-          }
-        });
-      });
-
-      function checkDuplicateEmail() {
-        const user_email = document.getElementById('user_email').value;
-        // 이메일 형식 검사
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(user_email)) {
-          document.getElementById('EmailCheckResult').innerText = '올바른 이메일 형식을 입력해주세요.';
-          return;
-        }
-
-        fetch('${pageContext.request.contextPath}/signup/check-email?user_email=' + encodeURIComponent(user_email))
-                .then(response => response.text())
-                .then(result => {
-                  document.getElementById('EmailCheckResult').innerText =
-                          result === 'OK' ? '사용 가능한 이메일입니다.' : '이미 사용 중인 이메일입니다.';
-                });
-      }
-    </script>
 
   </div>
 </div>
+<script>
+  const contextPath = '${pageContext.request.contextPath}';
+</script>
+<script src="${pageContext.request.contextPath}/resources/js/signup.js"></script>
+
 </body>
 <c:import url="/WEB-INF/views/includes/footer.jsp" />
 </html>

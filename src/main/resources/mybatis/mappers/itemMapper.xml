@@ -5,13 +5,20 @@
 
     <insert id="insertItem" parameterType="com.barcode.uniplo.domain.ItemDto">
         INSERT INTO item (
-            item_name, item_price, item_material, item_manufacturing_year_month,
+            item_id, item_name, item_price, item_material, item_manufacturing_year_month,
             item_cate_code, item_cate_detail_code, gender_code, image_id
         ) VALUES (
-                     #{itemName}, #{itemPrice}, #{itemMaterial}, #{itemManufacturingYearMonth},
-                     #{itemCateCode}, #{itemCateDetailCode}, #{genderCode}, #{imageId}
+                     null, #{item_name}, #{item_price}, #{item_material}, #{item_manufacturing_year_month},
+                     #{item_cate_code}, #{item_cate_detail_code}, #{gender_code}, #{image_id}
                  )
     </insert>
+
+    <select id="selectByGender" parameterType="string" resultType="com.barcode.uniplo.domain.ItemDto">
+        SELECT i.*, img.image_url
+        FROM item i
+                 JOIN image img ON i.image_id = img.image_id
+        WHERE i.gender_code = #{gender_code}
+    </select>
 
     <select id="selectAllItems" resultType="com.barcode.uniplo.domain.ItemDto">
         SELECT

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -56,4 +57,16 @@ public class ItemController {
         return "item/cate_baby";
     }
 
+
+
+    // by Mose
+    @GetMapping("")
+    public String getGender(@RequestParam("gender") String gender, Model m) {
+
+        List<ItemDto> items = itemService.findByGender(gender);
+        m.addAttribute("items", items);
+
+        return "item/list";
+
+    }
 }

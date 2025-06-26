@@ -2,6 +2,7 @@ package com.barcode.uniplo.service;
 
 import com.barcode.uniplo.dao.ItemRepository;
 import com.barcode.uniplo.domain.ItemDto;
+import jakarta.mail.FetchProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +24,9 @@ public class ItemService {
 
     public ItemDto getItemById(int id) {
         return itemRepository.selectItemById(id);
+    }
+
+    public List<ItemDto> findByGender(String genderCode) {
+        return itemRepository.findByGenderCode(genderCode);
     }
 }

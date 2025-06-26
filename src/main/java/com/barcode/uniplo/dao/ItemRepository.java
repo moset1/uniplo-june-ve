@@ -31,5 +31,9 @@ public class ItemRepository implements ItemDao {
     public int getPriceByItemId(int id) {
         return sqlSession.selectOne(namespace + ".getPriceByItemId", id);
     }
+
+    public List<ItemDto> findByGenderCode(String gender_code) {
+        return sqlSession.selectList(namespace + ".selectByGender", gender_code);
+    }
 }
 
