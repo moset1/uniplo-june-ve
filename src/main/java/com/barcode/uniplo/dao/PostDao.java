@@ -21,11 +21,13 @@ public interface PostDao {
 
     int update(PostDto postDto);
 
-    int updateCommentCount(Map map);
+    int updateCommentCount(Integer post_id, int count);
 
     int increaseViewCount(Integer post_id);
 
     List<PostDto> searchSelectPage(SearchCondition sc);
 
     int searchResultCount(SearchCondition sc);
+
+    public Boolean deletePost(Map map);
 }

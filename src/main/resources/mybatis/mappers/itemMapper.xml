@@ -47,6 +47,7 @@
         WHERE i.item_id = #{id}
     </select>
 
+
     <select id="getPriceByItemId" parameterType="int" resultType="int">
         SELECT item_price FROM item WHERE item_id = #{id}
     </select>

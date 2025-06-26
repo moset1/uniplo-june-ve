@@ -21,7 +21,7 @@
   <div class="post-header">
     <h2>${postDto.post_title}</h2>
     <div class="post-meta">
-      작성자: ${postDto.user_id} | 작성일: ${postDto.created_at.format(formatter)}
+      작성자: ${postDto.user_id} | 작성일: ${postDto.created_at.format(formatter)} | 수정일: ${postDto.updated_at.format(formatter)}
     </div>
   </div>
 

@@ -7,6 +7,10 @@
         SELECT count(*) FROM post
     </select>
 
+    <delete id="deleteAll">
+        DELETE FROM post
+    </delete>
+
     <delete id="delete" parameterType="map">
         DELETE FROM post
         WHERE post_id = #{post_id} AND user_id = #{user_id}
@@ -24,13 +28,13 @@
     </insert>
 
     <sql id="selectFromPost">
-        SELECT post_id, post_title, post_content, user_id, view_count, comment_count, created_at, is_private
+        SELECT post_id, post_title, post_content, user_id, view_count, comment_count, created_at, updated_at, is_private, priority
         FROM post
     </sql>
 
     <select id="selectAll" resultType="PostDto">
         <include refid="selectFromPost"/>
-        ORDER BY created_at DESC, post_id DESC
+        ORDER BY priority DESC, created_at DESC, post_id DESC
     </select>
 
     <select id="select" parameterType="int" resultType="PostDto">
@@ -51,14 +55,8 @@
         , is_private = #{is_private}
         , category_main = #{category_main}
         , category_sub = #{category_sub}
-        , updated_at = now();
+        , updated_at = now()
         WHERE post_id = #{post_id} AND user_id = #{user_id}
-    </update>
-
-    <update id="updateCommentCount" parameterType="map">
-        UPDATE post
-        SET comment_count = comment_count + #{count}
-        WHERE post_id= #{post_id}
     </update>
 
     <update id="increaseViewCount" parameterType="int">
@@ -90,11 +88,11 @@
     </sql>
 
     <select id="searchSelectPage" parameterType="SearchCondition" resultType="PostDto">
-        SELECT post_id, post_title, user_id, view_count, comment_count, created_at, post_type, is_private
+        SELECT post_id, post_title, user_id, view_count, comment_count, created_at, post_type, is_private, priority
         FROM post
         WHERE true
         <include refid="searchCondition"/>
-        ORDER BY created_at DESC, post_id DESC
+        ORDER BY priority DESC, created_at DESC, post_id DESC
         LIMIT #{offset}, #{pageSize}
     </select>
 
@@ -104,5 +102,11 @@
         WHERE true
         <include refid="searchCondition"/>
     </select>
+
+    <update id="updateCommentCount" parameterType="map">
+        UPDATE post
+        SET comment_count = comment_count + #{count}
+        WHERE post_id= #{post_id}
+    </update>
 
 </mapper>

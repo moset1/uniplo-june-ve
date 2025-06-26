@@ -7,6 +7,9 @@
         <typeAlias alias="UserDto" type="com.barcode.uniplo.domain.UserDto"/>
         <typeAlias alias="PostDto" type="com.barcode.uniplo.domain.PostDto"/>
         <typeAlias alias="SearchCondition" type="com.barcode.uniplo.domain.SearchCondition"/>
-        <typeAlias type="com.barcode.uniplo.domain.CartDto" alias="CartDto"/>
+        <typeAlias alias="CartDto" type="com.barcode.uniplo.domain.CartDto"/>
+        <typeAlias alias="OrderDto" type="com.barcode.uniplo.domain.OrderDto"/>
+        <typeAlias type="com.barcode.uniplo.domain.OrderProductDto" alias="OrderProductDto"/>
+        <typeAlias alias="CommentDto" type="com.barcode.uniplo.domain.CommentDto"/>
     </typeAliases>
 </configuration>

@@ -22,6 +22,8 @@ public class PostDto {
 
     public PostDto() {}
 
+
+
     public PostDto(Integer post_id, Integer user_id, String post_title, String post_content, String post_type, String is_private, String category_main, String category_sub) {
         this.post_id = post_id;
         this.user_id = user_id;

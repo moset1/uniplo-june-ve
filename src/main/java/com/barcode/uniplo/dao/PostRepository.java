@@ -56,7 +56,10 @@ public class PostRepository implements PostDao {
     }
 
     @Override
-    public int updateCommentCount(Map map) {
+    public int updateCommentCount(Integer post_id, int count) {
+        Map map = new HashMap();
+        map.put("post_id", post_id);
+        map.put("count", count);
         return session.update(namespace + "updateCommentCount", map);
     }
 
@@ -75,4 +78,9 @@ public class PostRepository implements PostDao {
         return session.selectOne(namespace + "searchResultCount", sc);
     }
 
+
+    @Override
+    public Boolean deletePost(Map map) {
+        return 1== session.delete(namespace + "delete", map);
+    }
 }
