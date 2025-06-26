@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.barcode.uniplo.dao.CategoryMapper">
+    <select id="getAllGenders" resultType="GenderDto">
+        SELECT gender_id, gender_name
+        FROM gender
+    </select>
+
+    <select id="getItemCatesByGender" parameterType="int" resultType="ItemCateDto">
+        SELECT item_cate_id, item_cate_name, gender_id
+        FROM item_cate
+        WHERE gender_id = #{gender_id}
+    </select>
+
+</mapper>

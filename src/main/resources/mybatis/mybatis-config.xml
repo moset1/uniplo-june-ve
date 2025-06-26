@@ -10,5 +10,7 @@
         <typeAlias alias="CartDto" type="com.barcode.uniplo.domain.CartDto"/>
         <typeAlias alias="OrderDto" type="com.barcode.uniplo.domain.OrderDto"/>
         <typeAlias type="com.barcode.uniplo.domain.OrderProductDto" alias="OrderProductDto"/>
+        <typeAlias alias="GenderDto" type="com.barcode.uniplo.domain.GenderDto"/>
+        <typeAlias alias="ItemCateDto" type="com.barcode.uniplo.domain.ItemCateDto"/>
     </typeAliases>
 </configuration>
