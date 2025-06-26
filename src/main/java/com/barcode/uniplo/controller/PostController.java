@@ -16,7 +16,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.beans.PropertyEditorSupport;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/post")
@@ -69,7 +71,6 @@ public class PostController {
         return "post/post";
     }
 
-//    @GetMapping("/editForm")
 
     @GetMapping("/write")
     public String write(HttpSession session, Model m, RedirectAttributes rattr) {
@@ -86,8 +87,7 @@ public class PostController {
 
     @PostMapping("/write")
     public String write(PostDto postDto, Model m, HttpSession session, RedirectAttributes rattr) {
-        UserDto userDto = (UserDto) session.getAttribute("authUser");
-        Integer user_id = userDto.getUser_id();
+        Integer user_id = getUserIdBySession(session);
         if(user_id == null)
             return "redirect:/login/login";
         postDto.setUser_id(user_id);
@@ -96,7 +96,7 @@ public class PostController {
             if (rowCnt != 1)
                 throw new Exception("Write failed");
             rattr.addFlashAttribute("msg", "WRT_OK");
-            return "redirect:/post/list";
+            return "redirect:/post/list" ;
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute(postDto);
@@ -106,14 +106,56 @@ public class PostController {
     }
 
     @PostMapping("/modify")
-    public String modify(PostDto postDto, SearchCondition sc, Model m, RedirectAttributes rattr) {
-        return "";
+    public String modify(PostDto postDto, SearchCondition sc, Model m, HttpSession session, RedirectAttributes rattr) {
+
+        Integer user_id = getUserIdBySession(session);
+        if(user_id == null)
+            return "redirect:/login/login";
+        postDto.setUser_id(user_id);
+        try {
+            int rowCnt = postService.modify(postDto);
+            if (rowCnt != 1)
+                throw new Exception("Write failed");
+            rattr.addFlashAttribute("msg", "WRT_OK");
+            return "redirect:/post/" +  postDto.getPost_id();
+        } catch (Exception e) {
+                e.printStackTrace();
+                m.addAttribute(postDto);
+                m.addAttribute("msg", "WRT_ERR");
+                return "post/post";
+        }
+
+
+
     }
 
     @PostMapping("/delete")
-    public String delete() {
-        return "";
+    public String delete(@RequestParam("post_id") Integer post_id, HttpSession session) {
+
+        Integer user_id = getUserIdBySession(session);
+        if(user_id == null)
+            return "redirect:/login/login";
+
+        Boolean result = postService.deletePost(post_id, user_id);
+        if( result) {
+            return "redirect:/post/list";
+        }
+        return "redirect:/post/" + post_id;
     }
 
+    @GetMapping("/editForm")
+    public String showEditForm(@RequestParam("post_id") Integer post_id, Model m) {
+
+        PostDto postDto = postService.read(post_id);
+        m.addAttribute("postDto", postDto);
+
+        return "post/postForm";
+
+    }
+
+    private Integer getUserIdBySession(HttpSession session) {
+        UserDto userDto = (UserDto)  session.getAttribute("authUser");
+        return userDto.getUser_id();
+    }
 
 }

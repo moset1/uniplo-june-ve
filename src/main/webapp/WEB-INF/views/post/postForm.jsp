@@ -74,6 +74,12 @@
       <option value="Y" ${postDto.is_private == 'Y' ? 'selected' : ''}>비공개</option>
     </select>
 
+    <label for="priority">중요 여부</label>
+    <select name="priority" id="priority">
+      <option value="0" ${postDto.priority == 0  || postDto.priority == null? 'selected' : ''}>일반</option>
+      <option value="1" ${postDto.priority != null && postDto.priority != 0 ? 'selected' : ''}>중요</option>
+    </select>
+
     <div class="form-buttons">
       <button type="submit" class="btn-submit">저장</button>
       <button type="button" class="btn-cancel" onclick="location.href='${contextPath}/post/list'">취소</button>

@@ -8,10 +8,13 @@ public interface ItemDao {
     void insertItem(ItemDto item);
     List<ItemDto> selectAllItems();
     ItemDto selectItemById(int id);
+<<<<<<< main
 
     // 추가
     // 아이템 단품 가격 조회
     int getPriceByItemId(int id);
 
 
+=======
+>>>>>>> main
 }
