@@ -18,6 +18,8 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
+    public static final String imageUrl = ""
+
     // 장바구니 페이지
     @GetMapping
     public String viewCart(HttpSession session, Model model) throws Exception {
@@ -43,6 +45,9 @@ public class CartController {
             totalPrice += itemPrice * cnt;
         }
         model.addAttribute("TotalPrice", totalPrice);
+        // model로 전달할까 했으나, 우리는 상품마다 이미지가 필요..
+        // 그리고 이미지..가 실제로 어떻게 저장될 진 모르지만 db에 url을 갖고 있던 것으로 기억.
+        // 따라서.. 서비스 단에서 price와 비슷하게 필드만 설정해두고 추가하는 방식으로 구현 예정.
         return "cart/cartList";
     }
 

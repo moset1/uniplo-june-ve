@@ -11,6 +11,8 @@ public interface ItemDao {
     public ItemDto selectItemById(Integer item_id);
 
     // 추가
+    // 아이템 단품 가격 조회
+    int getPriceByItemId(int id);
 
     public List<ItemDto> findByGenderCode(String genderCode);
 
