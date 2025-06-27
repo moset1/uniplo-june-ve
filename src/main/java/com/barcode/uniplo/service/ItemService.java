@@ -22,7 +22,7 @@ public class ItemService {
         return itemRepository.selectAllItems();
     }
 
-    public ItemDto getItemById(int id) {
+    public ItemDto getItemById(Integer id) {
         return itemRepository.selectItemById(id);
     }
 

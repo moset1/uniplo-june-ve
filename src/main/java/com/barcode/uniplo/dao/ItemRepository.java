@@ -23,8 +23,8 @@ public class ItemRepository implements ItemDao {
         return sqlSession.selectList(namespace + ".selectAllItems");
     }
 
-    public ItemDto selectItemById(int id) {
-        return sqlSession.selectOne(namespace + ".selectItemById", id);
+    public ItemDto selectItemById(Integer item_id) {
+        return sqlSession.selectOne(namespace + ".selectItemById", item_id);
     }
 
 

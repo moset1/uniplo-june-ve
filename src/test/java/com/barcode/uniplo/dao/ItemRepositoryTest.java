@@ -22,9 +22,29 @@ class ItemRepositoryTest {
     public void insertTest() {
 
         for(int i=0; i<20; i++) {
-            ItemDto itemDto = new ItemDto(1, "Tshirt"+i, 1234, "poly, cotton", LocalDateTime.now(), "Top", "T-shirts", "man", 2, "item_102.jpeg");
+            ItemDto itemDto = new ItemDto(1, "Tshirt"+i, 10000+i, "poly, cotton", LocalDateTime.now(), "Top", "T-shirts", "men", 2, "item_102.jpeg");
+
             itemRepository.insertItem(itemDto);
         }
+
+        for(int i=0; i<20; i++) {
+            ItemDto itemDto = new ItemDto(1, "Jean"+i, 10000+i, "poly, cotton", LocalDateTime.now(), "Bottom", "Jean", "women", 3, "item_103.jpeg");
+
+            itemRepository.insertItem(itemDto);
+        }
+
+        for(int i=0; i<20; i++) {
+            ItemDto itemDto = new ItemDto(1, "Shirts"+i, 10000+i, "poly, cotton", LocalDateTime.now(), "Top", "Shirts", "kids", 4, "item_104.jpeg");
+
+            itemRepository.insertItem(itemDto);
+        }
+
+        for(int i=0; i<20; i++) {
+            ItemDto itemDto = new ItemDto(1, "Supima"+i, 10000+i, "poly, cotton", LocalDateTime.now(), "Top", "Shirts", "baby", 5, "item_105.jpeg");
+
+            itemRepository.insertItem(itemDto);
+        }
+
 
     }
 

@@ -16,7 +16,7 @@
         <div class="dropdown">
             <a href="#">SHOP</a>
             <div class="dropdown-content">
-                <a href="${contextPath}/item?gender=man">MEN</a>
+                <a href="${contextPath}/item?gender=men">MEN</a>
                 <a href="${contextPath}/item?gender=women">WOMEN</a>
                 <a href="${contextPath}/item?gender=kids">KIDS</a>
                 <a href="${contextPath}/item?gender=baby">BABY</a>

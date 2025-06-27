@@ -27,11 +27,11 @@ public class ItemController {
         return "item/list"; // -> /WEB-INF/views/item/list.jsp  제품 목록 JSP 파일 이름 다르게 만들면 바꾸기
     }
 
-    @GetMapping("/{id}")
-    public String getItemById(@PathVariable("id") int id, Model model) {
-        ItemDto item = itemService.getItemById(id);
+    @GetMapping("/detail")
+    public String getItemById(@RequestParam("item_id") Integer item_id, Model model) {
+        ItemDto item = itemService.getItemById(item_id);
         if (item == null) {
-            return "error/404"; // 추후 404 페이지 만들면 연결
+            return "error/404error"; // 추후 404 페이지 만들면 연결
         }
         model.addAttribute("item", item);
         return "item/item"; // → /WEB-INF/views/item/item.jsp

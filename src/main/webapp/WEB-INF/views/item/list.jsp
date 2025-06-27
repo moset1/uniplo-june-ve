@@ -7,13 +7,14 @@
   <meta charset="UTF-8">
   <title>상품 목록 | Uniplon</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+  <script src="${pageContext.request.contextPath}/resources/js/common.js" defer></script>
 </head>
 <body>
 <div class="container">
   <h2>상품 목록</h2>
   <div class="product-grid">
     <c:forEach var="item" items="${items}">
-      <a href="${pageContext.request.contextPath}/item/${item.item_id}">
+      <a href="${pageContext.request.contextPath}/item/detail?item_id=${item.item_id}">
         <div class="product-card">
           <img src="${pageContext.request.contextPath}/resources/images/${item.image_url}" alt="${item.item_name}" />
           <div class="product-name">${item.item_name}</div>
