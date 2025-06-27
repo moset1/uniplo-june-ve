@@ -96,14 +96,14 @@
     </div>
 
 
-    <form action="${pageContext.request.contextPath}/post/list" method="get" style="display: flex; justify-content: flex-end; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-        <select name="type" style="padding: 0.4rem;">
+    <form action="${pageContext.request.contextPath}/post/list" method="get" style="display: flex; justify-content: flex-end; align-items: center; gap: 0.5rem; margin-left:12rem; margin-bottom: 1rem; width:60%;">
+        <select name="type" style="padding: 0.4rem; margin-bottom: 1rem;">
             <option value="title" ${ph.sc.option == 'T' ? 'selected' : ''}>제목</option>
             <option value="content" ${ph.sc.option == 'C' ? 'selected' : ''}>내용</option>
             <option value="writer" ${ph.sc.option == 'W' ? 'selected' : ''}>작성자</option>
         </select>
-        <input type="text" name="keyword" value="${ph.sc.keyword}" placeholder="검색어 입력" style="padding: 0.4rem; width: 200px;" />
-        <button type="submit" style="padding: 0.4rem 1rem; background-color: #b00020; color: white; border: none; border-radius: 4px;">검색</button>
+        <input type="text" name="keyword" value="${ph.sc.keyword}" placeholder="검색어 입력" style="padding: 0.4rem; width: 800px;" />
+        <button type="submit" style="padding: 0.4rem 1rem; background-color: #b00020; width:100px; color: white; border: none; border-radius: 4px;">검색</button>
     </form>
 </div>
 

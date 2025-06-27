@@ -11,6 +11,7 @@ public class CartDto {
     private Date cart_reg_date;
     private int cart_item_cnt = 1;// 추가된 필드
     private int cart_item_price;
+    private String image_url;
 
     public CartDto() {}
 
@@ -62,4 +63,7 @@ public class CartDto {
 
     public int getCart_item_price() { return cart_item_price; }
     public void setCart_item_price(int cart_item_price) { this.cart_item_price = cart_item_price; }
+
+    public String getImage_url() { return image_url; }
+    public void setImage_url(String image_url) { this.image_url = image_url; }
 }
