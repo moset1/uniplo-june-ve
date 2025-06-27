@@ -57,9 +57,13 @@ public class CartController {
     public String addCartItem(@ModelAttribute CartDto cartDto, HttpSession session) throws Exception {
         UserDto authUser = (UserDto) session.getAttribute("authUser");
 
+        // 로그인 안 한 경우 -> 로그인 페이지로 이동
+        if (authUser == null || authUser.getUser_id() == null) {
+            return "redirect:/login/login";
+        }
+
         //cartDto의 user_id에 세션의 authUser저장. 세션은 객체여서 String으로 변환 필요
         cartDto.setUser_id(authUser.getUser_id().toString());
-
         cartService.addToCart(cartDto);
         return "redirect:/cart";
     }
@@ -73,7 +77,7 @@ public class CartController {
         cartDto.setUser_id(authUser.getUser_id().toString());
 
         cartService.deleteItem(cartDto);
-        return "redirect:/cart";
+        return "cart/cartList";
     }
 
     // 장바구니 수량 수정
