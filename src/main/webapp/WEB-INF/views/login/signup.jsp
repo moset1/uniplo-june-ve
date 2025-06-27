@@ -14,6 +14,9 @@
     <form action="${pageContext.request.contextPath}/signup/signup" method="post">
       <div class="email-check-row">
         <input type="email" id="user_email" name="user_email" placeholder="이메일" required />
+        <c:if test="${not empty errors.getFieldError('user_email')}">
+          <span class="error">${errors.getFieldError('user_email').defaultMessage}</span>
+        </c:if>
         <button type="button" id="emailCheckBtn" onclick="checkDuplicateEmail()">중복 확인</button>
         <button type="button" id="sendAuthCodeBtn" onclick="sendAuthCode()">인증코드 발송</button>
       </div>

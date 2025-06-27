@@ -37,26 +37,6 @@ public class ItemController {
         return "item/item"; // → /WEB-INF/views/item/item.jsp
     }
 
-    @GetMapping("/cate_women")
-    public String showWomenCatePage() {
-        return "item/cate_women";
-    }
-
-    @GetMapping("/cate_men")
-    public String showMenCategoryPage() {
-        return "item/cate_men";
-    }
-
-    @GetMapping("/cate_kids")
-    public String showKidsCategoryPage() {
-        return "item/cate_kids";
-    }
-
-    @GetMapping("/cate_baby")
-    public String showBabyCategoryPage() {
-        return "item/cate_baby";
-    }
-
 
 
     // by Mose
