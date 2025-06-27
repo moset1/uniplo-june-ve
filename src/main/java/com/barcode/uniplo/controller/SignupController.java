@@ -3,12 +3,19 @@ package com.barcode.uniplo.controller;
 import com.barcode.uniplo.domain.UserDto;
 import com.barcode.uniplo.service.MailService;
 import com.barcode.uniplo.service.SignupService;
+import com.barcode.uniplo.validator.SignUpValidator;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/signup")
@@ -19,13 +26,23 @@ public class SignupController {
     @Autowired
     private MailService mailService;
 
+    @InitBinder
+    public void toUser(WebDataBinder binder) {
+
+        binder.addValidators(new SignUpValidator());
+
+        List<Validator> validatorList = binder.getValidators();
+        System.out.println("validatorList = " + validatorList);
+
+    }
+
     @GetMapping("/signup")
     public String showSignUpForm() {
         return "login/signup";
     }
 
     @PostMapping("/signup")
-    public String addUser(UserDto userDto) {
+    public String addUser(@Valid UserDto userDto, BindingResult result) {
         if(signupService.addUser(userDto))
             return "login/signup-success";
         return "login/signup";
