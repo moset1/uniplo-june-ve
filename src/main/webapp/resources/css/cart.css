@@ -1,143 +1,75 @@
-/* =========================================================================
-   cart.css  ―  “Uniplo” 장바구니 전용 스타일 (레드 테마)
-   ========================================================================= */
-
-/* 0. 공통 -----------------------------------------------------------------*/
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
+/* 기본 세팅 */
 body {
-    margin: 0;
     font-family: 'Noto Sans KR', sans-serif;
-    background: #fff;
-    color: #222;
-}
-
-/* 1. 테이블 박스 중앙 정렬 --------------------------------------------------*/
-.cart-wrapper {
-    display: flex;
-    justify-content: center;
-    padding: 24px 12px;
-}
-
-/* 2. 장바구니 테이블 -------------------------------------------------------*/
-.cart-table {
-    width: 100%;
-    max-width: 900px;
-    border-collapse: collapse;
-    border: 2px solid #b3001b;
-}
-
-.cart-table th {
-    background: #b3001b;
-    color: #fff;
-    padding: 10px 6px;
-    font-size: 15px;
-    font-weight: 700;
-    border-right: 1px solid #fff;
-}
-.cart-table th:last-child { border-right: none; }
-
-.cart-table td {
-    padding: 12px 6px;
-    text-align: center;
-    border-top: 1px solid #b3001b33;
-}
-
-.cart-table tr + tr td {
-    border-top: 1px solid #b3001b99;
-}
-
-/* 3. 수량 & 증감 버튼 ------------------------------------------------------*/
-.qty-wrapper {
-    display: inline-flex;          /* ▲ 변경: inline-flex 로 바꿔 셀 내부에서 딱 붙도록 */
-    align-items: center;
-    gap: 6px;
-}
-
-.qty-value {
-    min-width: 30px;               /* ▲ 살짝 넓힘 */
-    text-align: center;
-    font-weight: 700;
-    font-size: 15px;               /* ▲ 14 → 15 */
-}
-
-.qty-btn-col {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    align-items: center;           /* ▲ 추가: 버튼 세로쌓기를 중앙 정렬 */
-}
-
-/* ▲ / ▼ 버튼 ― 크기 ↑ ----------------------------------------------------*/
-.qty-arrow-btn {
-    width: 18px;                   /* ▲ 14 → 18 */
-    height: 16px;                  /* ▲ 12 → 16 */
-    font-size: 10px;               /* ▲ 8  → 10 */
-    line-height: 1;
+    margin: 0;
     padding: 0;
-    border: 1px solid #b3001b;
-    border-radius: 2px;
-    background: #b3001b;
-    color: #fff;
-    cursor: pointer;
-    transition: background 0.15s;
+    background-color: #fff;
+    color: #111;
+    line-height: 1.6;
 }
-.qty-arrow-btn:hover { background: #900016; }
 
-/* 4. 삭제 버튼 ------------------------------------------------------------*/
-.cart-delete-btn {
-    background: #d03030;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 6px 16px;
-    cursor: pointer;
-    font-size: 13px;
-    transition: background 0.15s;
+h2 {
+    text-align: center;
+    margin: 40px 0 20px;
+    font-size: 24px;
 }
-.cart-delete-btn:hover { background: #a00000; }
 
-/* 5. 총 가격 & 주문 버튼 ---------------------------------------------------*/
-.cart-total {
-    max-width: 900px;
-    margin: 20px auto 0;
-    text-align: right;
+/* 장바구니 테이블 */
+table {
+    width: 80%;
+    margin: 0 auto 60px;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+table th, table td {
+    padding: 12px 16px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+
+table th {
+    background-color: #f5f5f5;
     font-weight: 700;
-    font-size: 17px;
-}
-.cart-total-value { color: #d00000; }
-
-.order-btn-wrapper {
-    max-width: 900px;
-    margin: 12px auto 40px;
-    text-align: right;
+    color: #333;
 }
 
-.order-btn {
-    padding: 10px 28px;
-    font-size: 15px;
-    font-weight: 700;
+/* 비어 있을 때 메시지 */
+p {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+    margin-top: 40px;
+}
+
+/* 삭제 버튼 스타일 */
+input[type="submit"] {
+    background-color: #b00020;  /* 유니클로 레드 */
+    color: white;
     border: none;
-    border-radius: 6px;
-    background: #b3001b;
-    color: #fff;
+    padding: 8px 16px;
     cursor: pointer;
-    transition: background 0.15s;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
 }
-.order-btn:hover { background: #900016; }
 
-/* 6. 반응형(선택) ---------------------------------------------------------*/
-@media (max-width: 640px) {
-    .cart-table th,
-    .cart-table td {
-        font-size: 13px;
-        padding: 8px 4px;
+input[type="submit"]:hover {
+    background-color: #b00020;
+    color: white;
+}
+
+/* 반응형 고려 */
+@media screen and (max-width: 768px) {
+    table, tr, td, th {
+        font-size: 14px;
     }
-    .qty-value     { font-size: 14px; }
-    .qty-arrow-btn { width: 16px; height: 14px; font-size: 9px; }   /* 모바일에서도 조금 축소 */
-    .order-btn     { font-size: 14px; padding: 8px 22px; }
+
+    table {
+        width: 95%;
+    }
+
+    input[type="submit"] {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
 }

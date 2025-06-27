@@ -73,7 +73,7 @@
                     <tr>
                         <!-- 상품 ID 대신 이미지 출력 -->
                         <td>
-                            <img src="${pageContext.request.contextPath}${item.imageUrl}"
+                            <img src="${pageContext.request.contextPath}${item.image_url}"
                                  alt="${item.item_id}" class="cart-item-img" width="80" height="80"/>
                         </td>
                         <td>${item.item_color_code}</td>
@@ -163,7 +163,7 @@
         </c:forEach>
     </table>
     <div style="margin-top: 16px; text-align: right; font-weight: bold;">
-        총 가격: <span style="color: red;">${TotalPrice}</span> 원
+        총 가격: <span style="color: #b00020">${TotalPrice}</span> 원
     </div>
     <div class="order-button">
         <form action="${pageContext.request.contextPath}/cart/order" method="post">
