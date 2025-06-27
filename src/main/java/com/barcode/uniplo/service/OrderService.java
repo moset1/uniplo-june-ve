@@ -35,7 +35,9 @@ public class OrderService {
         order.setUser_id(userId);
         order.setOrder_status("주문 완료");
         for (CartDto cart : cartList) {
-            int itemPrice = cart.getCart_item_price();
+            int itemUnitPrice = cart.getCart_item_price();
+            int itemCnt = cart.getCart_item_cnt();
+            int itemPrice = itemUnitPrice * itemCnt;
             totalOrderPrice += itemPrice;
         }
         order.setOrder_price(totalOrderPrice); // 나중에 계산한다면 set 가능
@@ -50,7 +52,7 @@ public class OrderService {
             op.setItem_color_code(cart.getItem_color_code());
             op.setItem_size_code(cart.getItem_size_code());
             op.setOred_item_cnt(cart.getCart_item_cnt());
-            op.setOred_item_name(null);  // 나중에 상품 테이블에서 join해서 불러와도 됨
+            op.setOred_item_name(cart.getItem_name());
             int itemPrice = cart.getCart_item_price();
             op.setOred_item_price(itemPrice); // 가격도 마찬가지
             orderDao.insertOrderProduct(op);

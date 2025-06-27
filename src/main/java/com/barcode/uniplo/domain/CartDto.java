@@ -12,6 +12,15 @@ public class CartDto {
     private int cart_item_cnt = 1;// 추가된 필드
     private int cart_item_price;
     private String image_url;
+    private String item_name;
+
+    public String getItem_name() {
+        return item_name;
+    }
+
+    public void setItem_name(String item_name) {
+        this.item_name = item_name;
+    }
 
     public CartDto() {}
 

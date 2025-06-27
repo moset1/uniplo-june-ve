@@ -6,6 +6,7 @@ import com.barcode.uniplo.domain.CartDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -29,7 +30,8 @@ public class CartService {
             // 2. 수량 증가로 update
             cartDao.updateCnt(cartDto);
         } else {
-            cartDto.setCart_item_cnt(1); // 수량 1로 초기 설정
+            cartDto.setCart_item_cnt(1);// 수량 1로 초기 설정
+            cartDto.setCart_reg_date(new Date());
             cartDao.insertCart(cartDto);
         }
     }
@@ -55,6 +57,8 @@ public class CartService {
         for (CartDto dto : cartList) {
             dto.setCart_item_price(itemDao.getPriceByItemId(Integer.parseInt(dto.getItem_id())));
             dto.setImage_url(itemDao.selectItemById(Integer.parseInt(dto.getItem_id())).getImage_url());
+            dto.setItem_name(itemDao.selectItemById(Integer.parseInt(dto.getItem_id())).getItem_name());
+
         }
         return cartList;
     }
