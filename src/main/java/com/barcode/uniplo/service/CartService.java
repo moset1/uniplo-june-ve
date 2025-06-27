@@ -54,6 +54,7 @@ public class CartService {
         // 리스트에서 하나씩 뽑아서, 아이템id기반 조회 후 가격 set.
         for (CartDto dto : cartList) {
             dto.setCart_item_price(itemDao.getPriceByItemId(Integer.parseInt(dto.getItem_id())));
+            dto.setImage_url(itemDao.selectItemById(Integer.parseInt(dto.getItem_id())).getImage_url());
         }
         return cartList;
     }
