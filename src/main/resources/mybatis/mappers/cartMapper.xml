@@ -11,7 +11,7 @@
             user_id, item_id, item_color_code, item_size_code, cart_item_cnt, cart_reg_date
         )
         VALUES (
-                   #{user_id}, #{item_id}, #{item_color_code}, #{item_size_code}, #{cart_item_cnt}, SYSDATE
+                   #{user_id}, #{item_id}, #{item_color_code}, #{item_size_code}, #{cart_item_cnt}, SYSDATE()
                )
     </insert>
 
