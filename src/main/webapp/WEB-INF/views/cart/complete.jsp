@@ -12,8 +12,8 @@
 </head>
 <body>
 <c:import url="/WEB-INF/views/includes/header.jsp" />
-<h2>주문 성공</h2>
-<p>주문이 성공했습니다.</p>
+<h2>주문 완료</h2>
+<p>주문이 접수됐습니다.</p>
 </body>
 <c:import url="/WEB-INF/views/includes/footer.jsp" />
 </html>
