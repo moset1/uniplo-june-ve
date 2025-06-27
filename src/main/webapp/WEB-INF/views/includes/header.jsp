@@ -16,10 +16,10 @@
         <div class="dropdown">
             <a href="#">SHOP</a>
             <div class="dropdown-content">
-                <a href="${contextPath}/shop/men">MEN</a>
-                <a href="${contextPath}/shop/women">WOMEN</a>
-                <a href="${contextPath}/shop/kids">KIDS</a>
-                <a href="${contextPath}/shop/baby">BABY</a>
+                <a href="${contextPath}/item?gender=men">MEN</a>
+                <a href="${contextPath}/item?gender=women">WOMEN</a>
+                <a href="${contextPath}/item?gender=kids">KIDS</a>
+                <a href="${contextPath}/item?gender=baby">BABY</a>
             </div>
         </div>
         <div class="dropdown">

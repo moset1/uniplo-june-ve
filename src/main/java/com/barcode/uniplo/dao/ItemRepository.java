@@ -23,13 +23,17 @@ public class ItemRepository implements ItemDao {
         return sqlSession.selectList(namespace + ".selectAllItems");
     }
 
-    public ItemDto selectItemById(int id) {
-        return sqlSession.selectOne(namespace + ".selectItemById", id);
+    public ItemDto selectItemById(Integer item_id) {
+        return sqlSession.selectOne(namespace + ".selectItemById", item_id);
     }
 
 
     public int getPriceByItemId(int id) {
         return sqlSession.selectOne(namespace + ".getPriceByItemId", id);
+    }
+
+    public List<ItemDto> findByGenderCode(String gender_code) {
+        return sqlSession.selectList(namespace + ".selectByGender", gender_code);
     }
 }
 

@@ -47,32 +47,7 @@
       </form>
     </c:if>
   </div>
-
-  <%--  <!-- 댓글 목록 -->--%>
-  <%--  <div class="comment-section">--%>
-  <%--    <h3>댓글</h3>--%>
-  <%--    <c:forEach var="comment" items="${commentList}">--%>
-  <%--      <div class="comment">--%>
-  <%--        <div class="comment-meta">--%>
-  <%--            ${comment.user_id} | <fmt:formatDate value="${comment.created_at}" pattern="yyyy-MM-dd HH:mm"/>--%>
-  <%--        </div>--%>
-  <%--        <div class="comment-content">${comment.comment_content}</div>--%>
-  <%--      </div>--%>
-  <%--    </c:forEach>--%>
-
-  <%--    <!-- 댓글 작성 -->--%>
-  <%--    <c:if test="${not empty sessionScope.user}">--%>
-  <%--      <form class="comment-form" action="${pageContext.request.contextPath}/comment/write" method="post">--%>
-  <%--        <input type="hidden" name="post_id" value="${post.post_id}">--%>
-  <%--        <textarea name="c omment_content" placeholder="댓글을 입력하세요..." required></textarea>--%>
-  <%--        <button type="submit">댓글 등록</button>--%>
-  <%--      </form>--%>
-  <%--    </c:if>--%>
-  <%--    <c:if test="${empty sessionScope.user}">--%>
-  <%--      <p>댓글을 작성하려면 <a href="${pageContext.request.contextPath}/user/login">로그인</a> 해주세요.</p>--%>
-  <%--    </c:if>--%>
-  <%--  </div>--%>
-  <%--</div>--%>
+</div>
 
 </body>
 </html>

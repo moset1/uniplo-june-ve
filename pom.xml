@@ -150,6 +150,21 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Mail -->
+        <!-- https://mvnrepository.com/artifact/com.sun.mail/jakarta.mail -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+
+        <!-- Spring mail support (JavaMailSenderImpl) -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${org.springframework-version}</version> <!-- 또는 당신 프로젝트 버전에 맞춤 -->
+        </dependency>
+
     </dependencies>
 
     <build>

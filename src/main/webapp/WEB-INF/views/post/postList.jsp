@@ -74,7 +74,7 @@
         </tbody>
     </table>
 
-    <div style="text-align: center; margin-bottom: 2rem;">
+    <div class="pagination">
         <c:if test="${ph.showPrev}">
             <a href="${pageContext.request.contextPath}/post/list${ph.queryString(ph.beginPage - 1)}" style="margin: 0 0.5rem;">이전</a>
         </c:if>
@@ -82,10 +82,10 @@
         <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
             <c:choose>
                 <c:when test="${i == ph.sc.page}">
-                    <strong style="margin: 0 0.5rem; color: #b00020;">${i}</strong>
+                    <strong>${i}</strong>
                 </c:when>
                 <c:otherwise>
-                    <a href="${pageContext.request.contextPath}/post/list${ph.queryString(i)}" style="margin: 0 0.5rem;">${i}</a>
+                    <a href="${pageContext.request.contextPath}/post/list${ph.queryString(i)}">${i}</a>
                 </c:otherwise>
             </c:choose>
         </c:forEach>
