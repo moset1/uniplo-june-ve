@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -26,11 +27,11 @@ public class ItemController {
         return "item/list"; // -> /WEB-INF/views/item/list.jsp  제품 목록 JSP 파일 이름 다르게 만들면 바꾸기
     }
 
-    @GetMapping("/{id}")
-    public String getItemById(@PathVariable("id") int id, Model model) {
-        ItemDto item = itemService.getItemById(id);
+    @GetMapping("/detail")
+    public String getItemById(@RequestParam("item_id") Integer item_id, Model model) {
+        ItemDto item = itemService.getItemById(item_id);
         if (item == null) {
-            return "error/404"; // 추후 404 페이지 만들면 연결
+            return "error/404error"; // 추후 404 페이지 만들면 연결
         }
         model.addAttribute("item", item);
         return "item/item"; // → /WEB-INF/views/item/item.jsp
@@ -56,4 +57,16 @@ public class ItemController {
         return "item/cate_baby";
     }
 
+
+
+    // by Mose
+    @GetMapping("")
+    public String getGender(@RequestParam("gender") String gender, Model m) {
+
+        List<ItemDto> items = itemService.findByGender(gender);
+        m.addAttribute("items", items);
+
+        return "item/list";
+
+    }
 }

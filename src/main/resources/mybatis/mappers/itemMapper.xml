@@ -5,46 +5,33 @@
 
     <insert id="insertItem" parameterType="com.barcode.uniplo.domain.ItemDto">
         INSERT INTO item (
-            item_name, item_price, item_material, item_manufacturing_year_month,
+            item_id, item_name, item_price, item_material, item_manufacturing_year_month,
             item_cate_code, item_cate_detail_code, gender_code, image_id
         ) VALUES (
-                     #{itemName}, #{itemPrice}, #{itemMaterial}, #{itemManufacturingYearMonth},
-                     #{itemCateCode}, #{itemCateDetailCode}, #{genderCode}, #{imageId}
+                     null, #{item_name}, #{item_price}, #{item_material}, #{item_manufacturing_year_month},
+                     #{item_cate_code}, #{item_cate_detail_code}, #{gender_code}, #{image_id}
                  )
     </insert>
 
+    <select id="selectByGender" parameterType="string" resultType="com.barcode.uniplo.domain.ItemDto">
+        SELECT i.*, img.image_url
+        FROM item i
+                 JOIN image img ON i.image_id = img.image_id
+        WHERE i.gender_code = #{gender_code}
+    </select>
+
     <select id="selectAllItems" resultType="com.barcode.uniplo.domain.ItemDto">
-        SELECT
-            i.item_id AS id,
-            i.item_name AS itemName,
-            i.item_price AS itemPrice,
-            i.item_material AS itemMaterial,
-            i.item_manufacturing_year_month AS itemManufacturingYearMonth,
-            i.item_cate_code AS itemCateCode,
-            i.item_cate_detail_code AS itemCateDetailCode,
-            i.gender_code AS genderCode,
-            i.image_id AS imageId,
-            img.image_url AS imageUrl
+        SELECT i.*, img.image_url
         FROM item i
                  LEFT JOIN image img ON i.image_id = img.image_id
         ORDER BY i.item_id DESC
     </select>
 
     <select id="selectItemById" parameterType="int" resultType="com.barcode.uniplo.domain.ItemDto">
-        SELECT
-            i.item_id AS id,
-            i.item_name AS itemName,
-            i.item_price AS itemPrice,
-            i.item_material AS itemMaterial,
-            i.item_manufacturing_year_month AS itemManufacturingYearMonth,
-            i.item_cate_code AS itemCateCode,
-            i.item_cate_detail_code AS itemCateDetailCode,
-            i.gender_code AS genderCode,
-            i.image_id AS imageId,
-            img.image_url AS imageUrl
+        SELECT i.*, img.image_url
         FROM item i
                  LEFT JOIN image img ON i.image_id = img.image_id
-        WHERE i.item_id = #{id}
+        WHERE i.item_id = #{item_id}
     </select>
 
 

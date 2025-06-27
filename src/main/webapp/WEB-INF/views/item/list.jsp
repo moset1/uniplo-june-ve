@@ -5,19 +5,20 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>상품 목록 | Uniplone</title>
-  <link rel="stylesheet" href="/resources/css/style.css">
+  <title>상품 목록 | Uniplon</title>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+  <script src="${pageContext.request.contextPath}/resources/js/common.js" defer></script>
 </head>
 <body>
 <div class="container">
   <h2>상품 목록</h2>
   <div class="product-grid">
     <c:forEach var="item" items="${items}">
-      <a href="${pageContext.request.contextPath}/item/${item.id}">
+      <a href="${pageContext.request.contextPath}/item/detail?item_id=${item.item_id}">
         <div class="product-card">
-          <img src="${item.imageUrl}" alt="${item.itemName}" />
-          <div class="product-name">${item.itemName}</div>
-          <div class="product-price">₩${item.itemPrice}</div>
+          <img src="${pageContext.request.contextPath}/resources/images/${item.image_url}" alt="${item.item_name}" />
+          <div class="product-name">${item.item_name}</div>
+          <div class="product-price">₩${item.item_price}</div>
         </div>
       </a>
     </c:forEach>
