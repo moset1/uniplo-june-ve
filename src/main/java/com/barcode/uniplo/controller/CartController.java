@@ -18,7 +18,7 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    public static final String imageUrl = ""
+    public static final String imageUrl = "";
 
     // 장바구니 페이지
     @GetMapping
