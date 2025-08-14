@@ -1,6 +1,6 @@
 package com.barcode.uniplo.domain;
 
-public class OrderDto {
+public class  OrderDto {
     private int order_id;
     private String user_id;
     private String order_status;
