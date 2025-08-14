@@ -19,11 +19,17 @@
 
 ### 데이터베이스 설계 (ERD)
 <details>
-<summary>ERD 다이어그램 보기 (클릭)</summary>
+<summary> 전체 ERD 다이어그램 보기 (클릭)</summary>
 <br>
 <img width="100%" alt="쇼핑몰 DB 설계" src="https://github.com/user-attachments/assets/7f965626-e867-45f4-9389-6a57f8d002b8" />
 </details>
 
+<details>
+<summary> ERD 다이어그램 중 설계를 맡은 주문취소, 반품, 환불, 교환 (클릭)</summary>
+<br>
+<img width="1070" height="645" alt="image" src="https://github.com/user-attachments/assets/7ac2bff2-8e09-4446-bb88-ed7e94d25832" />
+
+</details>
 #### 설계 담당 파트
 *   주문 취소, 교환, 환불, 반품 관련 로직 및 데이터 모델링
 
