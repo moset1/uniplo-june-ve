@@ -77,7 +77,7 @@ public class CartController {
         cartDto.setUser_id(authUser.getUser_id().toString());
 
         cartService.deleteItem(cartDto);
-        return "cart/cartList";
+        return "redirect:/cart";
     }
 
     // 장바구니 수량 수정
